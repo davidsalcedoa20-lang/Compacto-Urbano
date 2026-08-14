@@ -1,0 +1,629 @@
+/* ============================================
+   Servicio Template — Design System unificado
+   ============================================ */
+
+.page-servicio .nav-dropdown {
+    position: relative;
+}
+
+.page-servicio .nav-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+}
+
+.page-servicio .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    min-width: 240px;
+    padding: 10px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(5, 64, 116, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+    z-index: 20;
+}
+
+.page-servicio .nav-dropdown.is-open .nav-dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.page-servicio .nav-dropdown-menu[hidden] {
+    display: none;
+}
+
+.page-servicio .nav-dropdown-menu a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--title);
+    transition: background 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.page-servicio .nav-dropdown-menu a:hover,
+.page-servicio .nav-dropdown-menu a[aria-current="page"] {
+    background: var(--blue-soft);
+    color: var(--blue);
+}
+
+.page-servicio .nav-dropdown-toggle svg {
+    transition: transform 0.25s var(--ease);
+}
+
+.page-servicio .nav-dropdown.is-open .nav-dropdown-toggle svg {
+    transform: rotate(180deg);
+}
+
+/* ---------- Hero 50/50 ---------- */
+
+.svc-hero {
+    padding: calc(var(--header-h) + 48px) 0 90px;
+    background: #FFFFFF;
+}
+
+.svc-hero-grid {
+    width: min(92%, var(--max));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    min-height: calc(100vh - var(--header-h) - 140px);
+}
+
+.svc-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-bottom: 24px;
+}
+
+.svc-breadcrumb a {
+    color: var(--gray-400);
+    transition: color 0.25s var(--ease);
+}
+
+.svc-breadcrumb a:hover {
+    color: var(--blue);
+}
+
+.svc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--blue);
+    margin-bottom: 18px;
+}
+
+.svc-eyebrow .label-line {
+    width: 28px;
+    height: 2px;
+    background: var(--blue);
+}
+
+.svc-hero-copy h1 {
+    font-size: clamp(32px, 4.2vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--title);
+    margin-bottom: 20px;
+}
+
+.svc-hero-lead {
+    font-size: 16px;
+    color: var(--gray-600);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 28px;
+}
+
+.svc-hero-copy .btn-cotizar {
+    margin-bottom: 36px;
+}
+
+.svc-hero-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 20px;
+}
+
+.svc-hero-feature {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.svc-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(119, 201, 242, 0.18);
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.svc-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.svc-hero-feature strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--title);
+    margin-bottom: 2px;
+}
+
+.svc-hero-feature span {
+    font-size: 12px;
+    color: var(--gray-600);
+    line-height: 1.4;
+}
+
+.svc-hero-media {
+    position: relative;
+}
+
+.svc-hero-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    aspect-ratio: 4 / 5;
+    background: var(--gray-100);
+    box-shadow: var(--shadow-lg);
+}
+
+.svc-hero-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.28) 100%);
+    pointer-events: none;
+}
+
+.svc-hero-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.06);
+    will-change: transform;
+    transition: transform 1s var(--ease);
+}
+
+.svc-hero-media:hover .svc-hero-frame img {
+    transform: scale(1.1);
+}
+
+.svc-geo {
+    position: absolute;
+    left: -28px;
+    top: 10%;
+    bottom: 10%;
+    width: 72px;
+    background: var(--blue);
+    clip-path: polygon(0 0, 55% 0, 100% 50%, 55% 100%, 0 100%, 45% 50%);
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 0 28px rgba(119, 201, 242, 0.18);
+}
+
+/* ---------- Intro cards ---------- */
+
+.svc-intro {
+    padding: 110px 0 120px;
+    background: #FFFFFF;
+}
+
+.svc-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.svc-card {
+    text-align: center;
+    padding: 34px 24px;
+    background: #FFFFFF;
+    border-radius: 14px;
+    border: 1px solid rgba(5, 64, 116, 0.08);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.svc-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(119, 201, 242, 0.15);
+}
+
+.svc-card:hover .svc-icon {
+    background: var(--blue-soft);
+    border-color: var(--blue);
+    transform: scale(1.05);
+}
+
+.svc-card .svc-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+}
+
+.svc-card .svc-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.svc-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--title);
+    margin-bottom: 10px;
+}
+
+.svc-card p {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.65;
+}
+
+/* ---------- Proceso timeline ---------- */
+
+.svc-proceso {
+    padding: 110px 0 120px;
+    background: var(--navy);
+    color: var(--white);
+}
+
+.svc-proceso .section-head h2,
+.svc-beneficios .section-head h2 {
+    color: var(--white);
+}
+
+.svc-proceso .section-label,
+.svc-beneficios .section-label {
+    color: var(--blue);
+}
+
+.svc-timeline {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+.svc-step {
+    position: relative;
+    text-align: center;
+    padding: 0 8px;
+}
+
+.svc-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: calc(50% + 34px);
+    width: calc(100% - 36px);
+    height: 1px;
+    background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 6px, transparent 6px 12px);
+    pointer-events: none;
+}
+
+.svc-step-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 0 rgba(119, 201, 242, 0.18), 0 12px 28px rgba(119, 201, 242, 0.18);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.svc-step:hover .svc-step-icon {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 8px rgba(119, 201, 242, 0.18), 0 16px 32px rgba(119, 201, 242, 0.18);
+}
+
+.svc-step-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.svc-step-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    margin-bottom: 8px;
+}
+
+.svc-step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.svc-step-text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.55;
+}
+
+/* ---------- Beneficios ---------- */
+
+.svc-beneficios {
+    padding: 110px 0 120px;
+    background: var(--navy-mid);
+    color: var(--white);
+}
+
+.svc-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.svc-benefit {
+    text-align: center;
+    padding: 28px 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.svc-benefit:hover {
+    background: rgba(119, 201, 242, 0.1);
+    border-color: rgba(119, 201, 242, 0.18);
+    transform: translateY(-4px);
+    box-shadow: 0 0 24px rgba(119, 201, 242, 0.18);
+}
+
+.svc-benefit .svc-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 16px;
+    border-color: rgba(119, 201, 242, 0.18);
+    background: transparent;
+}
+
+.svc-benefit .svc-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.svc-benefit h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.svc-benefit p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.65;
+}
+
+/* ---------- CTA ---------- */
+
+.svc-cta {
+    padding: 0 0 120px;
+    background: #FFFFFF;
+}
+
+.svc-cta-panel {
+    width: min(92%, var(--max));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 48px 52px;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 0% 50%, rgba(119, 201, 242, 0.14) 0%, transparent 45%),
+        var(--navy);
+    color: var(--white);
+    box-shadow: var(--shadow-lg);
+}
+
+.svc-cta-mark {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 18px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(119, 201, 242, 0.16);
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.svc-cta-mark svg {
+    width: 28px;
+    height: 28px;
+}
+
+.svc-cta-copy {
+    max-width: 640px;
+}
+
+.svc-cta-copy h2 {
+    font-size: clamp(24px, 2.8vw, 34px);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+
+.svc-cta-copy p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+}
+
+.svc-cta-panel .btn-cotizar {
+    flex-shrink: 0;
+    box-shadow: 0 12px 32px rgba(119, 201, 242, 0.16);
+}
+
+.svc-loading {
+    padding: 120px 20px;
+    text-align: center;
+    color: var(--gray-600);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+    .svc-timeline {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px 16px;
+    }
+
+    .svc-step:nth-child(3)::after {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .svc-hero-grid {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        gap: 40px;
+    }
+
+    .svc-hero-media {
+        max-width: 560px;
+        width: 100%;
+    }
+
+    .svc-hero-frame {
+        aspect-ratio: 16 / 11;
+    }
+
+    .svc-geo {
+        width: 48px;
+        left: -14px;
+    }
+
+    .svc-cards-grid,
+    .svc-benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .svc-cta-panel {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 28px;
+    }
+
+    .svc-cta-panel .btn-cotizar {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .svc-hero {
+        padding: calc(var(--header-h) + 32px) 0 64px;
+    }
+
+    .svc-intro,
+    .svc-proceso,
+    .svc-beneficios {
+        padding: 80px 0 88px;
+    }
+
+    .svc-cta {
+        padding-bottom: 88px;
+    }
+
+    .svc-timeline {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .svc-step {
+        text-align: left;
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        grid-template-rows: auto auto auto;
+        column-gap: 16px;
+        padding: 0;
+    }
+
+    .svc-step:not(:last-child)::after {
+        left: 27px;
+        top: 62px;
+        width: 1px;
+        height: calc(100% - 24px);
+        background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0 6px, transparent 6px 12px);
+    }
+
+    .svc-step-icon {
+        grid-row: 1 / span 3;
+        margin: 0;
+    }
+
+    .svc-hero-features {
+        grid-template-columns: 1fr;
+    }
+
+    .page-servicio .nav .nav-link:not(.nav-dropdown-toggle) {
+        display: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .svc-cards-grid,
+    .svc-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .svc-hero-frame img,
+    .svc-card,
+    .svc-benefit,
+    .svc-step-icon {
+        transition: none;
+    }
+}

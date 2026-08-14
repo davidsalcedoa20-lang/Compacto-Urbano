@@ -1,0 +1,58 @@
+[
+  {
+    "nombre": "Residencial Norte",
+    "inicio": 2012,
+    "fin": 2013,
+    "imagen": "Conjunto Residencial Akanra.jpg",
+    "link": ""
+  },
+  {
+    "nombre": "Torre del Bosque",
+    "inicio": 2013,
+    "fin": 2015,
+    "imagen": "Edificio Torre del Bosque Izquierdo.jpg",
+    "link": ""
+  },
+  {
+    "nombre": "Casa Grande",
+    "inicio": 2015,
+    "fin": 2016,
+    "imagen": "Conjunto Residencial Casa Grande.jpg",
+    "link": ""
+  },
+  {
+    "nombre": "Edificio Yerbabuena",
+    "inicio": 2017,
+    "fin": 2017,
+    "imagen": "edificio yerbabuena.jpg",
+    "link": ""
+  },
+  {
+    "nombre": "Parque Empresarial Santa Lucía",
+    "inicio": 2018,
+    "fin": 2023,
+    "imagen": "Parque Empresarial e Industrial Santa Lucía-05 133536.jpg",
+    "link": ""
+  },
+  {
+    "nombre": "Edificio Tempo",
+    "inicio": 2020,
+    "fin": 2024,
+    "imagen": "Edificio Profesionales Tempo.jpg",
+    "link": ""
+  },
+  {
+    "nombre": "Centro Empresarial",
+    "inicio": 2022,
+    "fin": 2023,
+    "imagen": "Edificio Tierra Firme.jpg",
+    "link": ""
+  },
+  {
+    "nombre": "Plaza Urbana",
+    "inicio": 2023,
+    "fin": 2024,
+    "imagen": "Conjunto Acanto.jpg",
+    "link": "https://wa.me/573176740334"
+  }
+]

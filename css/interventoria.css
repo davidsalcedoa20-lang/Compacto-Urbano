@@ -1,0 +1,632 @@
+/* ============================================
+   Interventoría — Landing
+   ============================================ */
+
+.page-iv .gi-breadcrumb a,
+.page-iv .gi-breadcrumb span {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.page-iv .gi-breadcrumb a:hover {
+    color: var(--blue);
+}
+
+/* ---------- Hero ---------- */
+
+.iv-hero {
+    position: relative;
+    min-height: calc(100vh - 0px);
+    min-height: 720px;
+    padding-top: var(--header-h);
+    color: var(--white);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.iv-hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.iv-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.04);
+}
+
+.iv-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(105deg, rgba(5, 11, 22, 0.92) 0%, rgba(5, 11, 22, 0.78) 42%, rgba(5, 11, 22, 0.45) 70%, rgba(5, 11, 22, 0.55) 100%),
+        linear-gradient(180deg, rgba(5, 11, 22, 0.35) 0%, transparent 30%, rgba(5, 11, 22, 0.55) 100%);
+}
+
+.iv-hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(92%, var(--max));
+    margin: 0 auto;
+    padding: 72px 0 80px;
+}
+
+.iv-hero-copy {
+    max-width: 640px;
+}
+
+.iv-hero-copy h1 {
+    font-size: clamp(34px, 4.6vw, 54px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--white);
+    margin-bottom: 22px;
+}
+
+.iv-hero-lead {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 28px;
+}
+
+.iv-hero-copy .btn-cotizar {
+    margin-bottom: 44px;
+}
+
+.iv-hero-features {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.iv-hero-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.iv-icon-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(119, 201, 242, 0.16);
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(119, 201, 242, 0.08);
+}
+
+.iv-icon-circle svg {
+    width: 18px;
+    height: 18px;
+}
+
+.iv-hero-feature > span:last-child {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.35;
+}
+
+/* ---------- Qué es ---------- */
+
+.iv-que {
+    padding: 110px 0 120px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.iv-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.iv-card {
+    text-align: center;
+    padding: 34px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.iv-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(119, 201, 242, 0.15);
+}
+
+.iv-card-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(119, 201, 242, 0.18);
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.iv-card:hover .iv-card-icon {
+    background: var(--blue-soft);
+    border-color: var(--blue);
+    transform: scale(1.05);
+}
+
+.iv-card-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.iv-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--title);
+    margin-bottom: 10px;
+}
+
+.iv-card p {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.65;
+}
+
+/* ---------- Proceso ---------- */
+
+.iv-proceso {
+    padding: 110px 0;
+    background: var(--gray-50);
+}
+
+.iv-proceso-grid {
+    width: min(92%, var(--max));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.iv-proceso-copy h2 {
+    font-size: clamp(28px, 3.2vw, 40px);
+    font-weight: 700;
+    color: var(--title);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+}
+
+.iv-timeline {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+}
+
+.iv-timeline li {
+    display: grid;
+    grid-template-columns: 40px 48px 1fr;
+    gap: 14px;
+    align-items: flex-start;
+    position: relative;
+    padding-bottom: 28px;
+}
+
+.iv-timeline li:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 63px;
+    top: 48px;
+    bottom: 0;
+    width: 1px;
+    background: repeating-linear-gradient(
+        180deg,
+        rgba(119, 201, 242, 0.18) 0 6px,
+        transparent 6px 12px
+    );
+}
+
+.iv-timeline-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.04em;
+    padding-top: 14px;
+}
+
+.iv-timeline-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(119, 201, 242, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.iv-timeline-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.iv-timeline strong {
+    display: block;
+    font-size: 16px;
+    color: var(--title);
+    margin-bottom: 4px;
+    padding-top: 10px;
+}
+
+.iv-timeline p {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.55;
+}
+
+.iv-featured {
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--navy);
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+}
+
+.iv-featured-media {
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+}
+
+.iv-featured-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease);
+}
+
+.iv-featured:hover .iv-featured-media img {
+    transform: scale(1.04);
+}
+
+.iv-featured-body {
+    padding: 28px 26px 32px;
+}
+
+.iv-featured-quote {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.45;
+    margin-bottom: 16px;
+}
+
+.iv-featured-meta {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue);
+}
+
+/* ---------- Beneficios ---------- */
+
+.iv-beneficios {
+    padding: 110px 0 120px;
+    background: var(--navy);
+    color: var(--white);
+}
+
+.iv-beneficios .section-head h2 {
+    color: var(--white);
+}
+
+.iv-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.iv-benefit {
+    text-align: center;
+    padding: 28px 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.iv-benefit:hover {
+    background: rgba(119, 201, 242, 0.1);
+    border-color: rgba(119, 201, 242, 0.18);
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px rgba(119, 201, 242, 0.15), 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.iv-benefit-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 16px;
+    color: var(--blue);
+}
+
+.iv-benefit-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.iv-benefit h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.iv-benefit p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.65;
+}
+
+/* ---------- Experiencia ---------- */
+
+.iv-experiencia {
+    padding: 110px 0 100px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.iv-experiencia-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.iv-experiencia-head h2 {
+    font-size: clamp(28px, 3.2vw, 40px);
+    font-weight: 700;
+    color: var(--title);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+}
+
+.iv-experiencia-lead {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    max-width: 480px;
+}
+
+.iv-link-portfolio {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue);
+    transition: gap 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.iv-link-portfolio:hover {
+    gap: 14px;
+    color: var(--azul-claro);
+}
+
+.iv-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.iv-project-card.portfolio-card.is-static {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    aspect-ratio: 3 / 4;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.iv-project-card.portfolio-card.is-static:hover {
+    transform: translateY(-8px) !important;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 1px rgba(119, 201, 242, 0.18), 0 24px 50px rgba(0, 0, 0, 0.18);
+}
+
+.iv-projects-error {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--gray-600);
+    padding: 40px 20px;
+}
+
+/* ---------- CTA ---------- */
+
+.iv-cta {
+    padding: 0 0 120px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.iv-cta-panel {
+    width: min(92%, var(--max));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 28px;
+    align-items: center;
+    padding: 44px 48px;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 0% 50%, rgba(119, 201, 242, 0.14) 0%, transparent 42%),
+        var(--navy);
+    color: var(--white);
+    box-shadow: var(--shadow-lg);
+}
+
+.iv-cta-mark {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(119, 201, 242, 0.16);
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iv-cta-mark svg {
+    width: 34px;
+    height: 34px;
+}
+
+.iv-cta-copy h2 {
+    font-size: clamp(22px, 2.6vw, 32px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+}
+
+.iv-cta-copy p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+    max-width: 520px;
+}
+
+.iv-cta-panel .btn-cotizar {
+    flex-shrink: 0;
+    box-shadow: 0 12px 32px rgba(119, 201, 242, 0.16);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+    .iv-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .iv-hero-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .iv-proceso-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .iv-featured {
+        position: static;
+        max-width: 560px;
+    }
+
+    .iv-cards-grid,
+    .iv-benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .iv-experiencia-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .iv-cta-panel {
+        grid-template-columns: 1fr;
+        padding: 36px 28px;
+    }
+
+    .iv-cta-panel .btn-cotizar {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .iv-hero {
+        min-height: 0;
+    }
+
+    .iv-hero-content {
+        padding: 48px 0 56px;
+    }
+
+    .iv-hero-copy h1 {
+        font-size: clamp(28px, 8vw, 36px);
+    }
+
+    .iv-que,
+    .iv-proceso,
+    .iv-beneficios,
+    .iv-experiencia {
+        padding: 80px 0 88px;
+    }
+
+    .iv-cta {
+        padding-bottom: 88px;
+    }
+
+    .iv-timeline li {
+        grid-template-columns: 36px 44px 1fr;
+        gap: 10px;
+    }
+
+    .iv-timeline li:not(:last-child)::before {
+        left: 57px;
+    }
+
+    .page-iv .nav .nav-link:not(.nav-dropdown-toggle) {
+        display: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .iv-cards-grid,
+    .iv-benefits-grid,
+    .iv-projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .iv-hero-features {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .iv-project-card.portfolio-card.is-static {
+        aspect-ratio: 16 / 11;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .iv-featured-media img,
+    .iv-card,
+    .iv-benefit {
+        transition: none;
+    }
+}

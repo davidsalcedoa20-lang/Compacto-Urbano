@@ -1,0 +1,654 @@
+/* ============================================
+   COMPACTO URBANO — Responsive
+   Desktop → Laptop → Tablet → Mobile
+   ============================================ */
+
+/* ---------- Large laptop / small desktop ---------- */
+@media (max-width: 1200px) {
+    :root {
+        --max: 1080px;
+    }
+
+    .hero-grid,
+    .cta-grid {
+        gap: 48px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(32px, 4.2vw, 48px);
+    }
+
+    .principios-grid {
+        gap: 36px 24px;
+    }
+
+    .nosotros-copy {
+        padding: 64px 48px;
+    }
+
+    .servicios-grid {
+        gap: 24px;
+    }
+
+    .servicio-body {
+        padding: 36px 22px 28px;
+    }
+
+    .servicio-body h3 {
+        font-size: 20px;
+    }
+}
+
+/* ---------- Tablet landscape / small laptop ---------- */
+@media (max-width: 992px) {
+    :root {
+        --header-h: 92px;
+    }
+
+    .logo img {
+        height: 64px;
+    }
+
+    .hero {
+        padding: calc(var(--header-h) + 56px) 0 80px;
+    }
+
+    .hero-grid,
+    .cta-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .hero-copy,
+    .cta-copy {
+        max-width: 640px;
+    }
+
+    .hero-lead,
+    .cta-copy p {
+        max-width: none;
+    }
+
+    .hero-media,
+    .cta-media {
+        max-width: 640px;
+        width: 100%;
+    }
+
+    .hero-frame {
+        aspect-ratio: 16 / 11;
+    }
+
+    .cta-frame {
+        aspect-ratio: 16 / 10;
+    }
+
+    .geo-chevron {
+        left: -16px;
+        width: 56px;
+        top: 10%;
+        bottom: 10%;
+    }
+
+    .geo-chevron--cta {
+        width: 48px;
+        height: 50%;
+        left: -12px;
+    }
+
+    .principios {
+        padding: 96px 0 100px;
+    }
+
+    .principios-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px 32px;
+    }
+
+    .nosotros-grid {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .nosotros-media {
+        min-height: 380px;
+        aspect-ratio: 16 / 10;
+    }
+
+    .nosotros-media img {
+        position: absolute;
+    }
+
+    .nosotros-copy {
+        padding: 64px 8% 72px;
+    }
+
+    .servicios {
+        padding: 100px 0 110px;
+    }
+
+    .servicios-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+        gap: 28px;
+    }
+
+    .stats {
+        padding: 90px 0 100px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px 32px;
+    }
+
+    .cta-final {
+        padding: 96px 0 100px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 0;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        padding: 0 0 8px;
+        border: none;
+    }
+
+    .footer-brand + .footer-col {
+        border-left: none;
+        padding-left: 0;
+        padding-right: 24px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-col:last-child {
+        padding-left: 24px;
+        padding-right: 0;
+    }
+}
+
+/* ---------- Tablet portrait ---------- */
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        padding: 24px 4% 32px;
+        background: var(--bg);
+        border-top: 1px solid rgba(5, 64, 116, 0.08);
+        box-shadow: var(--shadow-md);
+    }
+
+    .mobile-nav[hidden] {
+        display: none;
+    }
+
+    .mobile-nav .nav-link {
+        padding: 8px 0;
+        font-size: 14px;
+    }
+
+    .mobile-nav .btn-cotizar {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .section-head {
+        margin-bottom: 52px;
+    }
+
+    .hero {
+        padding: calc(var(--header-h) + 40px) 0 64px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(30px, 8vw, 40px);
+    }
+
+    .hero-lead {
+        font-size: 15px;
+    }
+
+    .principios {
+        padding: 80px 0 88px;
+    }
+
+    .principio-icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .nosotros-media {
+        min-height: 300px;
+    }
+
+    .nosotros-copy {
+        padding: 56px 6% 64px;
+    }
+
+    .nosotros-copy h2 {
+        font-size: clamp(26px, 6vw, 34px);
+    }
+
+    .servicios {
+        padding: 80px 0 90px;
+    }
+
+    .stats {
+        padding: 72px 0 80px;
+    }
+
+    .stats .section-head {
+        margin-bottom: 48px;
+    }
+
+    .stat-number {
+        font-size: 42px;
+    }
+
+    .cta-final {
+        padding: 80px 0 88px;
+    }
+
+    .cta-copy h2 {
+        font-size: clamp(28px, 7vw, 36px);
+    }
+
+    .footer-divider {
+        margin: 40px 0;
+    }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 480px) {
+    :root {
+        --header-h: 84px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .footer-brand,
+    .footer-col,
+    .footer-brand + .footer-col,
+    .footer-col:last-child {
+        grid-column: auto;
+        padding: 0;
+        border: none;
+        text-align: center;
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-brand p {
+        max-width: 320px;
+    }
+
+    .footer-col__title::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-links,
+    .footer-contact {
+        align-items: center;
+    }
+
+    .footer-links a,
+    .footer-contact li,
+    .footer-contact a {
+        justify-content: center;
+    }
+
+    .footer-nexa__logo {
+        height: 44px;
+    }
+
+    .footer-nexa__tagline br {
+        display: none;
+    }
+
+    .logo img {
+        height: 54px;
+    }
+
+    .header-inner {
+        width: min(90%, var(--max));
+    }
+
+    .hero-grid,
+    .cta-grid,
+    .section-wrap {
+        width: min(90%, var(--max));
+    }
+
+    .hero {
+        padding: calc(var(--header-h) + 32px) 0 56px;
+    }
+
+    .hero-grid,
+    .cta-grid {
+        gap: 36px;
+    }
+
+    .accent-line {
+        width: 36px;
+        margin-bottom: 20px;
+    }
+
+    .hero-copy .eyebrow {
+        font-size: 10px;
+        letter-spacing: 0.1em;
+    }
+
+    .hero-copy h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .hero-lead {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .geo-chevron {
+        width: 36px;
+        left: -10px;
+    }
+
+    .geo-chevron--cta {
+        width: 32px;
+        left: -8px;
+    }
+
+    .principios {
+        padding: 64px 0 72px;
+    }
+
+    .principios-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .section-head h2,
+    .stats .section-head h2 {
+        font-size: 26px;
+    }
+
+    .section-desc {
+        font-size: 14px;
+    }
+
+    .nosotros-media {
+        min-height: 260px;
+        aspect-ratio: 4 / 3;
+    }
+
+    .nosotros-copy {
+        padding: 48px 6% 56px;
+    }
+
+    .nosotros-lead {
+        font-size: 14px;
+        margin-bottom: 32px;
+    }
+
+    .feature {
+        gap: 14px;
+    }
+
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .servicios {
+        padding: 64px 0 72px;
+    }
+
+    .servicios-grid {
+        max-width: none;
+        gap: 24px;
+    }
+
+    .servicio-body {
+        padding: 36px 20px 24px;
+    }
+
+    .servicio-body h3 {
+        font-size: 18px;
+    }
+
+    .servicio-icon {
+        left: 18px;
+        width: 46px;
+        height: 46px;
+        bottom: -18px;
+    }
+
+    .stats {
+        padding: 64px 0 72px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 16px;
+    }
+
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 16px;
+    }
+
+    .stat-number {
+        font-size: 34px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+
+    .cta-final {
+        padding: 64px 0 72px;
+    }
+
+    .cta-copy h2 {
+        font-size: 26px;
+    }
+
+    .cta-copy p {
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+
+    .btn-cotizar--lg {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 24px;
+    }
+}
+
+/* ---------- Very small phones ---------- */
+@media (max-width: 360px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .hero-copy h1 {
+        font-size: 26px;
+    }
+}
+
+/* ---------- Modal Cotizar ---------- */
+@media (max-width: 992px) {
+    .cotizar-overlay {
+        padding: 16px;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    .cotizar-dialog {
+        max-height: none;
+        width: min(100%, 640px);
+        margin: 12px auto;
+    }
+
+    .cotizar-body {
+        grid-template-columns: 1fr;
+    }
+
+    .cotizar-content {
+        padding: 36px 28px 20px;
+    }
+
+    .cotizar-visual {
+        min-height: 340px;
+        order: -1;
+    }
+
+    .cotizar-visual-geo {
+        clip-path: polygon(0 0, 100% 0, 100% 72%, 0 100%);
+        background: linear-gradient(180deg, rgba(119, 201, 242, 0.18) 0%, rgba(5, 64, 116, 0.35) 55%, transparent 100%);
+    }
+
+    .whatsapp-card {
+        left: 50%;
+        top: auto;
+        bottom: 28px;
+        width: min(88%, 360px);
+        transform: translateX(-50%);
+        animation: waFloatMobile 4.5s ease-in-out infinite;
+    }
+
+    .whatsapp-card:hover {
+        transform: translateX(-50%) translateY(-4px);
+    }
+
+    .cotizar-guide {
+        display: none;
+    }
+
+    .cotizar-stats {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 18px 28px 24px;
+    }
+
+    @keyframes waFloatMobile {
+        0%, 100% { transform: translateX(-50%); }
+        50% { transform: translateX(-50%) translateY(-8px); }
+    }
+}
+
+@media (max-width: 768px) {
+    .cotizar-overlay {
+        padding: 0;
+        align-items: stretch;
+    }
+
+    .cotizar-dialog {
+        width: 100%;
+        min-height: 100%;
+        max-height: none;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .cotizar-content {
+        padding: 72px 22px 24px;
+    }
+
+    .cotizar-brand img {
+        height: 42px;
+        margin-bottom: 22px;
+    }
+
+    .cotizar-content h2 {
+        font-size: 24px;
+    }
+
+    .cotizar-visual {
+        min-height: 300px;
+    }
+
+    .whatsapp-card {
+        width: calc(100% - 32px);
+        bottom: 20px;
+    }
+
+    .whatsapp-card-main {
+        padding: 18px 16px 14px;
+        gap: 12px;
+    }
+
+    .whatsapp-card-desc {
+        font-size: 12px;
+    }
+
+    .status-time {
+        margin-left: 0;
+        width: 100%;
+        padding-left: 20px;
+    }
+
+    .cotizar-close {
+        top: 14px;
+        right: 14px;
+        background: rgba(255, 255, 255, 0.95);
+    }
+}
+
+@media (max-width: 480px) {
+    .cotizar-content {
+        padding: 68px 18px 20px;
+    }
+
+    .cotizar-lead {
+        font-size: 13px;
+    }
+
+    .cotizar-benefits li {
+        gap: 12px;
+    }
+
+    .cotizar-benefit-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .cotizar-visual {
+        min-height: 280px;
+    }
+
+    .whatsapp-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .cotizar-stats {
+        padding: 16px 18px 28px;
+    }
+}

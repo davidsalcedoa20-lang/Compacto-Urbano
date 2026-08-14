@@ -1,0 +1,185 @@
+{
+  "inmobiliaria": {
+    "id": "inmobiliaria",
+    "nombre": "Gestión Inmobiliaria",
+    "metaTitle": "Gestión Inmobiliaria | Compacto Urbano",
+    "metaDescription": "Acompañamiento en arriendo, compra, venta y avalúo de inmuebles. Gestión enfocada en proteger el valor de su patrimonio.",
+    "hero": {
+      "eyebrow": "GESTIÓN INMOBILIARIA",
+      "titleHtml": "Gestionamos sus inmuebles para que usted pueda enfocarse en <span class=\"accent\">lo importante.</span>",
+      "lead": "Ofrecemos acompañamiento en la gestión de inmuebles, facilitando procesos de arriendo, compra, venta y avalúo, con una gestión enfocada en proteger el valor y la tranquilidad de nuestros clientes.",
+      "image": "../img/servicios/propiedad.jpg",
+      "imageAlt": "Edificio moderno administrado por Compacto Urbano",
+      "quickBenefits": [
+        { "icon": "key", "title": "Arriendos", "text": "Gestión de ocupación y contratos" },
+        { "icon": "building", "title": "Compra y venta", "text": "Acompañamiento en cada operación" },
+        { "icon": "report", "title": "Avalúos", "text": "Orientación sobre el valor del activo" },
+        { "icon": "users", "title": "Acompañamiento", "text": "Soporte cercano al propietario" }
+      ]
+    },
+    "intro": {
+      "eyebrow": "¿QUÉ INCLUYE?",
+      "titleHtml": "Líneas de gestión para <span class=\"accent\">su patrimonio</span>",
+      "desc": "Acompañamos a propietarios e inversionistas en las decisiones y operaciones del inmueble, con claridad en cada etapa del proceso.",
+      "cards": [
+        { "icon": "key", "title": "Arriendos", "text": "Promoción, selección de arrendatarios, formalización de contratos y seguimiento de la relación arrendaticia." },
+        { "icon": "building", "title": "Compra", "text": "Orientación en la adquisición de inmuebles, con revisión de aspectos comerciales y documentales clave." },
+        { "icon": "chart", "title": "Venta", "text": "Acompañamiento en la comercialización del activo, desde la valoración inicial hasta el cierre de la operación." },
+        { "icon": "scales", "title": "Avalúos de inmuebles", "text": "Estimación del valor del inmueble para respaldar decisiones de arriendo, compra, venta o inversión." },
+        { "icon": "users", "title": "Acompañamiento inmobiliario", "text": "Asesoría continua al propietario en la operación y en las decisiones que afectan su patrimonio." },
+        { "icon": "report", "title": "Seguimiento y reportes", "text": "Información clara sobre el estado de la gestión, ocupación, pagos y novedades del inmueble." }
+      ]
+    },
+    "proceso": {
+      "eyebrow": "¿CÓMO FUNCIONA?",
+      "titleHtml": "Así acompañamos <span class=\"accent\">cada operación</span>",
+      "steps": [
+        { "icon": "search", "title": "Diagnóstico", "text": "Conocemos el inmueble, su situación actual y el objetivo del propietario." },
+        { "icon": "plan", "title": "Definición del plan", "text": "Acordamos el alcance: arriendo, compra, venta, avalúo o acompañamiento continuo." },
+        { "icon": "building", "title": "Ejecución", "text": "Avanzamos en la gestión comercial, documental y operativa según lo definido." },
+        { "icon": "clock", "title": "Seguimiento", "text": "Monitoreamos avances, pagos, ocupación y novedades relevantes." },
+        { "icon": "report", "title": "Cierre e informe", "text": "Consolidamos resultados y entregamos información útil para decidir." }
+      ]
+    },
+    "beneficios": {
+      "eyebrow": "BENEFICIOS",
+      "titleHtml": "Decisiones más claras sobre <span class=\"accent\">su patrimonio</span>",
+      "items": [
+        { "icon": "star", "title": "Enfoque en el patrimonio", "text": "Más que gestionar propiedades, ayudamos a tomar mejores decisiones sobre su patrimonio." },
+        { "icon": "check", "title": "Procesos transparentes", "text": "Información clara en arriendos, compra, venta y avalúos." },
+        { "icon": "shield", "title": "Protección del valor", "text": "Cuidado del activo en cada operación y en la gestión cotidiana." },
+        { "icon": "users", "title": "Acompañamiento cercano", "text": "Un canal directo para resolver dudas y avanzar con seguridad." },
+        { "icon": "chart", "title": "Orientación comercial", "text": "Criterio para rentar, comprar o vender en mejores condiciones." },
+        { "icon": "clock", "title": "Menos carga operativa", "text": "Usted se enfoca en lo importante; nosotros en la gestión del inmueble." }
+      ]
+    },
+    "cta": {
+      "title": "Más que gestionar propiedades, ayudamos a tomar mejores decisiones sobre su patrimonio.",
+      "text": "Cuéntenos su caso y le orientamos sobre arriendo, compra, venta o avalúo.",
+      "buttonLabel": "Solicitar asesoría inmobiliaria",
+      "whatsappMessage": "Hola Compacto Urbano, me interesa el servicio de Gestión Inmobiliaria. Deseo solicitar asesoría inmobiliaria."
+    }
+  },
+  "propiedad_horizontal": {
+    "id": "propiedad_horizontal",
+    "nombre": "Propiedad Horizontal",
+    "metaTitle": "Propiedad Horizontal | Compacto Urbano",
+    "metaDescription": "Administración de copropiedades y edificios orientada a preservar y potenciar el patrimonio colectivo.",
+    "hero": {
+      "eyebrow": "PROPIEDAD HORIZONTAL",
+      "titleHtml": "Administración que preserva y potencia el <span class=\"accent\">patrimonio colectivo.</span>",
+      "lead": "Gestionamos copropiedades y edificios mediante una administración que combina dirección, coordinación y seguimiento, para una operación organizada, transparente y orientada a la valorización de la propiedad.",
+      "image": "../img/servicios/propiedad.jpg",
+      "imageAlt": "Conjunto residencial en régimen de propiedad horizontal",
+      "quickBenefits": [
+        { "icon": "building", "title": "Administración", "text": "Operación diaria de la copropiedad" },
+        { "icon": "plan", "title": "Alta gerencia", "text": "Dirección y toma de decisiones" },
+        { "icon": "users", "title": "Coordinación", "text": "Actividades y proveedores" },
+        { "icon": "shield", "title": "Patrimonio", "text": "Preservación y valorización" }
+      ]
+    },
+    "intro": {
+      "eyebrow": "¿QUÉ INCLUYE?",
+      "titleHtml": "Administración de copropiedades con <span class=\"accent\">dirección y control</span>",
+      "desc": "Atendemos la operación de edificios y conjuntos con foco en el patrimonio colectivo, la coordinación diaria y la supervisión permanente de la propiedad.",
+      "cards": [
+        { "icon": "building", "title": "Administración de copropiedades", "text": "Gestión operativa, documental y administrativa del edificio o conjunto conforme al reglamento." },
+        { "icon": "plan", "title": "Alta gerencia", "text": "Dirección de la administración con visión de largo plazo y apoyo a consejo y asamblea." },
+        { "icon": "users", "title": "Coordinación de actividades", "text": "Organización de mantenimiento, proveedores, comunicaciones y actividades de la copropiedad." },
+        { "icon": "search", "title": "Supervisión de propiedades y edificios", "text": "Seguimiento al estado de zonas comunes, instalaciones y cumplimiento de obligaciones." },
+        { "icon": "shield", "title": "Preservación del patrimonio colectivo", "text": "Acciones orientadas a conservar y potenciar el valor de los bienes comunes." },
+        { "icon": "report", "title": "Rendición de cuentas", "text": "Informes claros de gestión, finanzas y avance de acuerdos ante los órganos de dirección." }
+      ]
+    },
+    "proceso": {
+      "eyebrow": "¿CÓMO FUNCIONA?",
+      "titleHtml": "Así administramos su <span class=\"accent\">copropiedad</span>",
+      "steps": [
+        { "icon": "search", "title": "Diagnóstico", "text": "Revisamos reglamento, estados, cartera y condición de zonas comunes." },
+        { "icon": "plan", "title": "Plan de dirección", "text": "Definimos prioridades de operación, mantenimiento y gobierno de la copropiedad." },
+        { "icon": "building", "title": "Administración", "text": "Ejecutamos la gestión diaria: proveedores, caja, comunicaciones y supervisión." },
+        { "icon": "users", "title": "Coordinación", "text": "Acompañamos consejo y asamblea con información oportuna y trazable." },
+        { "icon": "report", "title": "Seguimiento", "text": "Entregamos reportes de gestión y ajustamos el plan según los acuerdos." }
+      ]
+    },
+    "beneficios": {
+      "eyebrow": "BENEFICIOS",
+      "titleHtml": "Operación ordenada para <span class=\"accent\">generar confianza</span>",
+      "items": [
+        { "icon": "star", "title": "Patrimonio colectivo", "text": "Una gestión eficiente para conservar el patrimonio, mejorar la operación y generar confianza en cada decisión." },
+        { "icon": "plan", "title": "Dirección clara", "text": "Alta gerencia y coordinación que ordenan las prioridades del conjunto." },
+        { "icon": "check", "title": "Transparencia", "text": "Información disponible para consejo, asamblea y propietarios." },
+        { "icon": "building", "title": "Supervisión continua", "text": "Seguimiento a propiedades, edificios y zonas comunes." },
+        { "icon": "chart", "title": "Valorización", "text": "Decisiones orientadas a preservar y potenciar el activo colectivo." },
+        { "icon": "users", "title": "Convivencia ordenada", "text": "Reglas y canales claros que facilitan la vida en comunidad." }
+      ]
+    },
+    "cta": {
+      "title": "Una gestión eficiente para conservar el patrimonio, mejorar la operación y generar confianza en cada decisión.",
+      "text": "Si representa un edificio o conjunto, conversemos sobre el estado actual y preparemos una propuesta.",
+      "buttonLabel": "Solicitar propuesta para mi copropiedad",
+      "whatsappMessage": "Hola Compacto Urbano, me interesa el servicio de Propiedad Horizontal. Deseo solicitar una propuesta para mi copropiedad."
+    }
+  },
+  "interventoria": {
+    "id": "interventoria",
+    "nombre": "Interventoría",
+    "metaTitle": "Interventoría | Compacto Urbano",
+    "metaDescription": "Consultoría, interventoría y dirección de proyectos de infraestructura civil y arquitectónica.",
+    "hero": {
+      "eyebrow": "INTERVENTORÍA",
+      "titleHtml": "Supervisión estratégica para proyectos que <span class=\"accent\">deben cumplir.</span>",
+      "lead": "Brindamos consultoría, interventoría y dirección de proyectos de infraestructura civil y arquitectónica, con seguimiento técnico y administrativo durante las diferentes etapas de ejecución.",
+      "image": "../img/servicios/interventoria.jpg",
+      "imageAlt": "Supervisión técnica de obra — Interventoría Compacto Urbano",
+      "quickBenefits": [
+        { "icon": "plan", "title": "Consultoría", "text": "Orientación técnica y de gestión" },
+        { "icon": "search", "title": "Interventoría", "text": "Control en campo y documentación" },
+        { "icon": "building", "title": "Dirección", "text": "Liderazgo del proyecto" },
+        { "icon": "shield", "title": "Prevención", "text": "Anticipación de riesgos" }
+      ]
+    },
+    "intro": {
+      "eyebrow": "¿QUÉ INCLUYE?",
+      "titleHtml": "Acompañamiento técnico para <span class=\"accent\">obras que avanzan con control</span>",
+      "desc": "Cubrimos consultoría, interventoría y dirección en proyectos de infraestructura civil y arquitectónica, con foco en prevenir desviaciones y mejorar la eficiencia del proceso constructivo.",
+      "cards": [
+        { "icon": "plan", "title": "Consultoría", "text": "Asesoría técnica y de gestión para definir alcances, criterios de control y prioridades del proyecto." },
+        { "icon": "search", "title": "Interventoría", "text": "Supervisión técnica y administrativa de la ejecución, conforme a planos, contratos y especificaciones." },
+        { "icon": "building", "title": "Dirección de proyectos", "text": "Coordinación de etapas, actores y entregables para mantener el rumbo de la obra." },
+        { "icon": "wrench", "title": "Infraestructura civil y arquitectónica", "text": "Acompañamiento en proyectos de obra civil y edificación en sus distintas fases." },
+        { "icon": "shield", "title": "Prevención de riesgos", "text": "Identificación oportuna de desviaciones técnicas, de plazo o de costo." },
+        { "icon": "chart", "title": "Optimización de recursos", "text": "Seguimiento orientado a un uso más eficiente del presupuesto, el tiempo y la capacidad operativa." }
+      ]
+    },
+    "proceso": {
+      "eyebrow": "¿CÓMO FUNCIONA?",
+      "titleHtml": "Seguimiento en cada etapa del <span class=\"accent\">proyecto</span>",
+      "steps": [
+        { "icon": "plan", "title": "Planeación", "text": "Definimos alcance, criterios de control e indicadores de seguimiento." },
+        { "icon": "report", "title": "Revisión documental", "text": "Validamos planos, contratos, permisos, especificaciones y cronograma." },
+        { "icon": "building", "title": "Supervisión de obra", "text": "Inspeccionamos avance, materiales y cumplimiento en sitio." },
+        { "icon": "clock", "title": "Control continuo", "text": "Reportamos plazos, costos y riesgos, con acciones correctivas." },
+        { "icon": "check", "title": "Cierre", "text": "Verificación final, pendientes y documentación de cumplimiento." }
+      ]
+    },
+    "beneficios": {
+      "eyebrow": "BENEFICIOS",
+      "titleHtml": "Control para una ejecución <span class=\"accent\">más eficiente</span>",
+      "items": [
+        { "icon": "star", "title": "Prevención y eficiencia", "text": "Prevenimos riesgos, optimizamos recursos y contribuimos a una ejecución más eficiente de cada proyecto." },
+        { "icon": "shield", "title": "Protección de la inversión", "text": "Seguimiento continuo para reducir sobrecostos y desviaciones." },
+        { "icon": "check", "title": "Transparencia", "text": "Información clara y trazable para cada actor del proyecto." },
+        { "icon": "clock", "title": "Cumplimiento de plazos", "text": "Anticipamos cuellos de botella y sostenemos el ritmo de obra." },
+        { "icon": "chart", "title": "Mejor uso del presupuesto", "text": "Visibilidad de costos, variaciones y avance físico vs. financiero." },
+        { "icon": "users", "title": "Dirección independiente", "text": "Un equipo que cuida los intereses del proyecto frente a la ejecución." }
+      ]
+    },
+    "cta": {
+      "title": "Prevenimos riesgos, optimizamos recursos y contribuimos a una ejecución más eficiente de cada proyecto.",
+      "text": "Comparta el alcance de su obra y evaluamos el nivel de acompañamiento que requiere.",
+      "buttonLabel": "Evaluar mi proyecto",
+      "whatsappMessage": "Hola Compacto Urbano, me interesa el servicio de Interventoría. Deseo evaluar mi proyecto."
+    }
+  }
+}
