@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talonario de Rifa | Compacto Urbano</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        :root {
+            --celeste-oscuro: #054074;
+            --celeste: #1353AA;
+            --azul-claro: #77C9F2;
+            --gris: #7A8087;
+            --white: #FFFFFF;
+            --bg: #f5f8fb;
+            --border: rgba(5, 64, 116, 0.14);
+            --surface: rgba(5, 64, 116, 0.04);
+            --radius: 8px;
+            --shadow-sm: 0 4px 20px rgba(5, 64, 116, 0.08);
+            --shadow-md: 0 12px 40px rgba(5, 64, 116, 0.12);
+            --ok: #1c8a4b;
+            --ok-bg: #e5f6ec;
+            --warn: #b8860b;
+            --warn-bg: #fdf3d9;
+            --font: "Century Gothic", "Tw Cen MT", "Trebuchet MS", Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--celeste-oscuro);
+            padding-bottom: 60px;
+        }
+
+        header.top {
+            background: linear-gradient(120deg, var(--celeste-oscuro), var(--celeste));
+            color: var(--white);
+            padding: 28px 20px;
+        }
+
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+        header.top h1 { margin: 0 0 4px; font-size: 1.6rem; }
+        header.top p { margin: 0; opacity: .85; font-size: .9rem; }
+
+        .raffle-meta {
+            display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 14px; font-size: .85rem;
+        }
+        .raffle-meta span b { display: block; font-size: 1rem; }
+
+        .panel {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            padding: 18px 20px;
+            margin-top: -18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 20px; }
+        .toolbar input[type=text], .toolbar select {
+            font-family: var(--font);
+            padding: 9px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: .9rem;
+        }
+        .toolbar input[type=text] { flex: 1; min-width: 180px; }
+
+        button {
+            font-family: var(--font);
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            padding: 9px 16px;
+            font-size: .85rem;
+            font-weight: 600;
+            transition: transform .1s ease, opacity .15s ease;
+        }
+        button:active { transform: scale(.97); }
+        .btn-primary { background: var(--celeste); color: var(--white); }
+        .btn-primary:hover { opacity: .9; }
+        .btn-ghost { background: var(--surface); color: var(--celeste-oscuro); }
+        .btn-ghost:hover { background: var(--border); }
+        .btn-danger { background: #fdeaea; color: #b3261e; }
+        .btn-danger:hover { opacity: .85; }
+        .btn-wa { background: #25D366; color: #fff; }
+        .btn-wa:hover { opacity: .9; }
+        button:disabled { opacity: .45; cursor: not-allowed; }
+
+        .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+        .stat {
+            flex: 1; min-width: 120px;
+            background: var(--surface);
+            border-radius: 6px;
+            padding: 10px 14px;
+        }
+        .stat b { display: block; font-size: 1.3rem; }
+        .stat span { font-size: .75rem; color: var(--gris); }
+
+        .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+        .filters button.tab {
+            background: var(--surface); color: var(--celeste-oscuro); padding: 6px 12px; font-size: .78rem;
+        }
+        .filters button.tab.active { background: var(--celeste); color: var(--white); }
+
+        .grid-wrap { margin-top: 22px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+            gap: 8px;
+        }
+        .cell {
+            aspect-ratio: 1;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            font-weight: 700;
+            font-size: .95rem;
+            cursor: pointer;
+            position: relative;
+            transition: transform .1s ease;
+        }
+        .cell:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .cell.sold { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+        .cell.pending { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); }
+        .cell.hidden-by-filter { display: none; }
+        .cell .dot {
+            position: absolute; top: 3px; right: 3px; width: 7px; height: 7px; border-radius: 50%;
+        }
+        .cell.sold .dot { background: var(--ok); }
+        .cell.pending .dot { background: var(--warn); }
+
+        .empty-msg { text-align: center; color: var(--gris); padding: 30px; font-size: .9rem; }
+
+        /* Modal */
+        .overlay {
+            position: fixed; inset: 0; background: rgba(5,64,116,.45);
+            display: none; align-items: center; justify-content: center; padding: 16px; z-index: 50;
+        }
+        .overlay.open { display: flex; }
+        .modal {
+            background: var(--white); border-radius: var(--radius); max-width: 440px; width: 100%;
+            padding: 24px; box-shadow: var(--shadow-md); max-height: 90vh; overflow-y: auto;
+        }
+        .modal h2 { margin-top: 0; font-size: 1.1rem; }
+        .field { margin-bottom: 14px; }
+        .field label { display: block; font-size: .8rem; font-weight: 600; margin-bottom: 5px; color: var(--gris); }
+        .field input[type=text], .field input[type=tel], .field input[type=date], .field input[type=number], .field textarea {
+            width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--font); font-size: .9rem;
+        }
+        .field textarea { resize: vertical; min-height: 80px; }
+        .phone-row { display: flex; gap: 8px; }
+        .phone-row input:first-child { width: 78px; flex: none; }
+        .checkbox-row { display: flex; align-items: center; gap: 8px; font-size: .85rem; }
+        .modal-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; justify-content: flex-end; }
+        .modal-close { position: absolute; top: 14px; right: 18px; background: none; font-size: 1.3rem; color: var(--gris); padding: 0; }
+        .modal { position: relative; }
+
+        .config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        @media (max-width: 480px) { .config-grid { grid-template-columns: 1fr; } }
+
+        .toast {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--celeste-oscuro); color: var(--white); padding: 10px 18px;
+            border-radius: 6px; font-size: .85rem; opacity: 0; pointer-events: none; transition: opacity .25s ease;
+            z-index: 100; box-shadow: var(--shadow-md);
+        }
+        .toast.show { opacity: 1; }
+
+        .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .78rem; color: var(--gris); margin-top: 10px; }
+        .legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+        .footnote { max-width: 1100px; margin: 30px auto 0; padding: 0 16px; font-size: .78rem; color: var(--gris); line-height: 1.5; }
+
+        @media print {
+            header.top, .toolbar, .filters, .footnote, .btn-wa, .cell button { display: none !important; }
+            .panel { box-shadow: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top">
+        <div class="wrap">
+            <h1 id="raffleTitle">🎟️ Talonario de Rifa</h1>
+            <p id="raffleSubtitle">Configura tu rifa para empezar a asignar números.</p>
+            <div class="raffle-meta" id="raffleMeta"></div>
+        </div>
+    </header>
+
+    <div class="wrap">
+        <div class="panel">
+            <div class="toolbar">
+                <input type="text" id="searchInput" placeholder="Buscar por número, nombre o celular...">
+                <button class="btn-ghost" id="btnConfig">⚙️ Configurar rifa</button>
+                <button class="btn-ghost" id="btnExportCsv">⬇️ Exportar CSV</button>
+                <button class="btn-ghost" id="btnBackup">💾 Copia de seguridad</button>
+                <button class="btn-ghost" id="btnRestore">📂 Importar copia</button>
+                <input type="file" id="fileRestore" accept="application/json" hidden>
+                <button class="btn-danger" id="btnReset">🗑️ Reiniciar todo</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat"><b id="statTotal">0</b><span>Números totales</span></div>
+                <div class="stat"><b id="statSold">0</b><span>Vendidos</span></div>
+                <div class="stat"><b id="statAvail">0</b><span>Disponibles</span></div>
+                <div class="stat"><b id="statPending">0</b><span>Pendientes de pago</span></div>
+                <div class="stat"><b id="statRevenue">$0</b><span>Recaudado (pagados)</span></div>
+            </div>
+
+            <div class="filters">
+                <button class="tab active" data-filter="all">Todos</button>
+                <button class="tab" data-filter="available">Disponibles</button>
+                <button class="tab" data-filter="sold">Vendidos</button>
+                <button class="tab" data-filter="pending">Pendientes de pago</button>
+            </div>
+
+            <div class="legend">
+                <span><i class="swatch" style="background:var(--white);border:1px solid var(--border)"></i> Disponible</span>
+                <span><i class="swatch" style="background:var(--warn)"></i> Vendido / pendiente de pago</span>
+                <span><i class="swatch" style="background:var(--ok)"></i> Vendido / pagado</span>
+            </div>
+
+            <div class="grid-wrap">
+                <div class="grid" id="grid"></div>
+                <div class="empty-msg" id="emptyMsg" style="display:none;">Sin resultados para tu búsqueda.</div>
+            </div>
+        </div>
+    </div>
+
+    <p class="footnote">
+        Los datos de este talonario se guardan únicamente en este navegador (localStorage), no en un servidor.
+        Usa "Copia de seguridad" con frecuencia para no perder la información si cambias de computador o borras el navegador.
+        El envío del ticket abre WhatsApp Web/App con el mensaje ya redactado al celular del comprador — solo debes presionar "Enviar" allí.
+    </p>
+
+    <!-- Modal: Configuración -->
+    <div class="overlay" id="configOverlay">
+        <div class="modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2>Configurar rifa</h2>
+            <div class="config-grid">
+                <div class="field">
+                    <label>Nombre de la rifa</label>
+                    <input type="text" id="cfgName" placeholder="Ej: Rifa de Amor y Amistad">
+                </div>
+                <div class="field">
+                    <label>Premio</label>
+                    <input type="text" id="cfgPrize" placeholder="Ej: Televisor 55''">
+                </div>
+                <div class="field">
+                    <label>Fecha del sorteo</label>
+                    <input type="date" id="cfgDate">
+                </div>
+                <div class="field">
+                    <label>Valor por número</label>
+                    <input type="number" id="cfgPrice" placeholder="Ej: 10000" min="0">
+                </div>
+                <div class="field">
+                    <label>Cantidad de números</label>
+                    <select id="cfgDigits">
+                        <option value="2">100 números (00–99)</option>
+                        <option value="3">1000 números (000–999)</option>
+                        <option value="1">10 números (0–9)</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Código de país (celular)</label>
+                    <input type="text" id="cfgCountry" placeholder="57" maxlength="4">
+                </div>
+            </div>
+            <div class="field">
+                <label>Mensaje del ticket (WhatsApp)</label>
+                <textarea id="cfgTemplate"></textarea>
+                <small style="color:var(--gris)">Variables disponibles: {nombre} {numero} {rifa} {premio} {fecha} {valor}</small>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-ghost" data-close>Cancelar</button>
+                <button class="btn-primary" id="btnSaveConfig">Guardar configuración</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Asignar/editar número -->
+    <div class="overlay" id="ticketOverlay">
+        <div class="modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2 id="ticketModalTitle">Número</h2>
+            <div class="field">
+                <label>Nombre del comprador</label>
+                <input type="text" id="tkName" placeholder="Nombre completo">
+            </div>
+            <div class="field">
+                <label>Celular</label>
+                <div class="phone-row">
+                    <input type="text" id="tkCountry" placeholder="57">
+                    <input type="tel" id="tkPhone" placeholder="3001234567">
+                </div>
+            </div>
+            <div class="field">
+                <label>Nota (opcional)</label>
+                <input type="text" id="tkNote" placeholder="Cédula, referencia, etc.">
+            </div>
+            <div class="field checkbox-row">
+                <input type="checkbox" id="tkPaid">
+                <label for="tkPaid" style="margin:0;">Ya pagó</label>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-danger" id="btnFree" style="display:none;">Liberar número</button>
+                <button class="btn-ghost" data-close>Cancelar</button>
+                <button class="btn-primary" id="btnSaveTicket">Guardar</button>
+                <button class="btn-wa" id="btnSaveAndSend">Guardar y enviar por WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const STORAGE_KEY = 'talonario_rifa_v1';
+        const DEFAULT_TEMPLATE = '🎟️ *{rifa}*\nPremio: {premio}\nFecha del sorteo: {fecha}\n\n¡Hola {nombre}! Este es tu número de la rifa:\n\n👉 *N° {numero}* 👈\n\nValor: {valor}\n¡Mucha suerte! 🍀';
+
+        const defaultState = () => ({
+            config: {
+                name: 'Mi Rifa',
+                prize: '',
+                date: '',
+                price: 0,
+                digits: 2,
+                country: '57',
+                template: DEFAULT_TEMPLATE
+            },
+            tickets: {} // { "00": { name, country, phone, note, paid, assignedAt } }
+        });
+
+        let state = loadState();
+        let currentFilter = 'all';
+        let currentNumber = null;
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return defaultState();
+                const parsed = JSON.parse(raw);
+                return { ...defaultState(), ...parsed, config: { ...defaultState().config, ...parsed.config } };
+            } catch (e) {
+                return defaultState();
+            }
+        }
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function digitsCount() { return Number(state.config.digits) || 2; }
+        function totalNumbers() { return Math.pow(10, digitsCount()); }
+        function pad(n) { return String(n).padStart(digitsCount(), '0'); }
+
+        function formatMoney(v) {
+            const n = Number(v) || 0;
+            return '$' + n.toLocaleString('es-CO');
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(showToast._t);
+            showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
+        }
+
+        function renderHeader() {
+            const c = state.config;
+            document.getElementById('raffleTitle').textContent = '🎟️ ' + (c.name || 'Talonario de Rifa');
+            const parts = [];
+            if (c.prize) parts.push('Premio: ' + c.prize);
+            if (c.date) parts.push('Sorteo: ' + c.date);
+            if (c.price) parts.push('Valor: ' + formatMoney(c.price));
+            document.getElementById('raffleSubtitle').textContent = parts.length ? parts.join(' · ') : 'Configura tu rifa para empezar a asignar números.';
+        }
+
+        function renderStats() {
+            const total = totalNumbers();
+            const ticketNums = Object.keys(state.tickets).filter(n => Number(n) < total);
+            const sold = ticketNums.length;
+            const pending = ticketNums.filter(n => !state.tickets[n].paid).length;
+            const revenue = ticketNums.filter(n => state.tickets[n].paid).length * (Number(state.config.price) || 0);
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statSold').textContent = sold;
+            document.getElementById('statAvail').textContent = total - sold;
+            document.getElementById('statPending').textContent = pending;
+            document.getElementById('statRevenue').textContent = formatMoney(revenue);
+        }
+
+        function matchesSearch(numStr, ticket, query) {
+            if (!query) return true;
+            query = query.toLowerCase();
+            if (numStr.includes(query)) return true;
+            if (ticket) {
+                if ((ticket.name || '').toLowerCase().includes(query)) return true;
+                if ((ticket.phone || '').includes(query)) return true;
+            }
+            return false;
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            const total = totalNumbers();
+            const query = document.getElementById('searchInput').value.trim();
+            let visibleCount = 0;
+
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < total; i++) {
+                const numStr = pad(i);
+                const ticket = state.tickets[numStr];
+                const status = !ticket ? 'available' : (ticket.paid ? 'sold' : 'pending');
+
+                if (currentFilter !== 'all' && currentFilter !== status) continue;
+                if (!matchesSearch(numStr, ticket, query)) continue;
+
+                const cell = document.createElement('div');
+                cell.className = 'cell' + (status === 'sold' ? ' sold' : status === 'pending' ? ' pending' : '');
+                cell.textContent = numStr;
+                cell.title = ticket ? `${ticket.name || ''} · ${ticket.phone || ''}` : 'Disponible';
+                if (ticket) {
+                    const dot = document.createElement('span');
+                    dot.className = 'dot';
+                    cell.appendChild(dot);
+                }
+                cell.addEventListener('click', () => openTicketModal(numStr));
+                frag.appendChild(cell);
+                visibleCount++;
+            }
+            grid.appendChild(frag);
+            document.getElementById('emptyMsg').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        function renderAll() {
+            renderHeader();
+            renderStats();
+            renderGrid();
+        }
+
+        // ---- Config modal ----
+        function openConfigModal() {
+            const c = state.config;
+            document.getElementById('cfgName').value = c.name || '';
+            document.getElementById('cfgPrize').value = c.prize || '';
+            document.getElementById('cfgDate').value = c.date || '';
+            document.getElementById('cfgPrice').value = c.price || '';
+            document.getElementById('cfgDigits').value = String(c.digits || 2);
+            document.getElementById('cfgCountry').value = c.country || '57';
+            document.getElementById('cfgTemplate').value = c.template || DEFAULT_TEMPLATE;
+            document.getElementById('configOverlay').classList.add('open');
+        }
+
+        document.getElementById('btnConfig').addEventListener('click', openConfigModal);
+
+        document.getElementById('btnSaveConfig').addEventListener('click', () => {
+            const newDigits = Number(document.getElementById('cfgDigits').value);
+            if (newDigits !== state.config.digits) {
+                const ok = confirm('Cambiar la cantidad de números puede dejar fuera de rango números ya asignados con más dígitos. ¿Continuar?');
+                if (!ok) return;
+            }
+            state.config = {
+                name: document.getElementById('cfgName').value.trim() || 'Mi Rifa',
+                prize: document.getElementById('cfgPrize').value.trim(),
+                date: document.getElementById('cfgDate').value,
+                price: Number(document.getElementById('cfgPrice').value) || 0,
+                digits: newDigits,
+                country: document.getElementById('cfgCountry').value.trim() || '57',
+                template: document.getElementById('cfgTemplate').value || DEFAULT_TEMPLATE
+            };
+            saveState();
+            closeOverlays();
+            renderAll();
+            showToast('Configuración guardada');
+        });
+
+        // ---- Ticket modal ----
+        function openTicketModal(numStr) {
+            currentNumber = numStr;
+            const ticket = state.tickets[numStr];
+            document.getElementById('ticketModalTitle').textContent = 'Número ' + numStr;
+            document.getElementById('tkName').value = ticket ? ticket.name || '' : '';
+            document.getElementById('tkCountry').value = ticket ? (ticket.country || state.config.country) : state.config.country;
+            document.getElementById('tkPhone').value = ticket ? ticket.phone || '' : '';
+            document.getElementById('tkNote').value = ticket ? ticket.note || '' : '';
+            document.getElementById('tkPaid').checked = ticket ? !!ticket.paid : false;
+            document.getElementById('btnFree').style.display = ticket ? 'inline-block' : 'none';
+            document.getElementById('ticketOverlay').classList.add('open');
+        }
+
+        function readTicketForm() {
+            const name = document.getElementById('tkName').value.trim();
+            const country = document.getElementById('tkCountry').value.replace(/\D/g, '') || state.config.country;
+            const phone = document.getElementById('tkPhone').value.replace(/\D/g, '');
+            const note = document.getElementById('tkNote').value.trim();
+            const paid = document.getElementById('tkPaid').checked;
+            return { name, country, phone, note, paid };
+        }
+
+        function saveTicket(data) {
+            const existing = state.tickets[currentNumber];
+            state.tickets[currentNumber] = {
+                ...data,
+                assignedAt: existing ? existing.assignedAt : new Date().toISOString()
+            };
+            saveState();
+            renderAll();
+        }
+
+        document.getElementById('btnSaveTicket').addEventListener('click', () => {
+            const data = readTicketForm();
+            if (!data.name) { showToast('Ingresa el nombre del comprador'); return; }
+            saveTicket(data);
+            closeOverlays();
+            showToast('Número ' + currentNumber + ' guardado');
+        });
+
+        document.getElementById('btnSaveAndSend').addEventListener('click', () => {
+            const data = readTicketForm();
+            if (!data.name) { showToast('Ingresa el nombre del comprador'); return; }
+            if (!data.phone) { showToast('Ingresa el número de celular'); return; }
+            saveTicket(data);
+            sendWhatsapp(currentNumber, data);
+            closeOverlays();
+        });
+
+        document.getElementById('btnFree').addEventListener('click', () => {
+            if (!confirm('¿Liberar el número ' + currentNumber + '? Se perderán los datos del comprador.')) return;
+            delete state.tickets[currentNumber];
+            saveState();
+            renderAll();
+            closeOverlays();
+            showToast('Número ' + currentNumber + ' liberado');
+        });
+
+        function sendWhatsapp(numStr, data) {
+            const c = state.config;
+            const msg = (c.template || DEFAULT_TEMPLATE)
+                .replaceAll('{nombre}', data.name || '')
+                .replaceAll('{numero}', numStr)
+                .replaceAll('{rifa}', c.name || '')
+                .replaceAll('{premio}', c.prize || '')
+                .replaceAll('{fecha}', c.date || '')
+                .replaceAll('{valor}', formatMoney(c.price));
+            const fullPhone = (data.country || c.country || '') + data.phone;
+            const url = 'https://wa.me/' + fullPhone + '?text=' + encodeURIComponent(msg);
+            window.open(url, '_blank');
+        }
+
+        // ---- Filters & search ----
+        document.querySelectorAll('.filters .tab').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filters .tab').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderGrid();
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', renderGrid);
+
+        // ---- Overlays ----
+        function closeOverlays() {
+            document.querySelectorAll('.overlay').forEach(o => o.classList.remove('open'));
+        }
+        document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeOverlays));
+        document.querySelectorAll('.overlay').forEach(o => {
+            o.addEventListener('click', (e) => { if (e.target === o) closeOverlays(); });
+        });
+
+        // ---- Export CSV ----
+        document.getElementById('btnExportCsv').addEventListener('click', () => {
+            const rows = [['Número', 'Nombre', 'Celular', 'Nota', 'Pagado', 'Asignado']];
+            Object.keys(state.tickets).sort().forEach(num => {
+                const t = state.tickets[num];
+                rows.push([num, t.name || '', (t.country || '') + (t.phone || ''), t.note || '', t.paid ? 'Sí' : 'No', t.assignedAt || '']);
+            });
+            const csv = rows.map(r => r.map(v => `"${String(v).replaceAll('"', '""')}"`).join(',')).join('\n');
+            downloadFile(csv, 'talonario.csv', 'text/csv;charset=utf-8;');
+            showToast('CSV exportado');
+        });
+
+        // ---- Backup / restore JSON ----
+        document.getElementById('btnBackup').addEventListener('click', () => {
+            downloadFile(JSON.stringify(state, null, 2), 'talonario-backup.json', 'application/json');
+            showToast('Copia de seguridad descargada');
+        });
+
+        document.getElementById('btnRestore').addEventListener('click', () => document.getElementById('fileRestore').click());
+        document.getElementById('fileRestore').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                try {
+                    const parsed = JSON.parse(reader.result);
+                    if (!parsed.config || !parsed.tickets) throw new Error('Formato inválido');
+                    state = { ...defaultState(), ...parsed, config: { ...defaultState().config, ...parsed.config } };
+                    saveState();
+                    renderAll();
+                    showToast('Copia de seguridad restaurada');
+                } catch (err) {
+                    alert('El archivo no es una copia de seguridad válida.');
+                }
+            };
+            reader.readAsText(file);
+            e.target.value = '';
+        });
+
+        function downloadFile(content, filename, mime) {
+            const blob = new Blob([content], { type: mime });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // ---- Reset ----
+        document.getElementById('btnReset').addEventListener('click', () => {
+            if (!confirm('Esto borrará TODOS los números asignados y la configuración. ¿Continuar?')) return;
+            if (!confirm('Confirma de nuevo: se perderá toda la información del talonario. ¿Seguro?')) return;
+            state = defaultState();
+            saveState();
+            renderAll();
+            showToast('Talonario reiniciado');
+        });
+
+        renderAll();
+    </script>
+</body>
+
+</html>
