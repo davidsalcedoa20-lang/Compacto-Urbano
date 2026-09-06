@@ -204,6 +204,7 @@
                 <input type="text" id="searchInput" placeholder="Buscar por número, nombre o celular...">
                 <button class="btn-ghost" id="btnConfig">⚙️ Configurar rifa</button>
                 <button class="btn-ghost" id="btnExportCsv">⬇️ Exportar CSV</button>
+                <button class="btn-ghost" id="btnDownloadImage">🖼️ Descargar imagen</button>
                 <button class="btn-ghost" id="btnBackup">💾 Copia de seguridad</button>
                 <button class="btn-ghost" id="btnRestore">📂 Importar copia</button>
                 <input type="file" id="fileRestore" accept="application/json" hidden>
@@ -620,6 +621,137 @@
             reader.readAsText(file);
             e.target.value = '';
         });
+
+        // ---- Download talonario as image ----
+        document.getElementById('btnDownloadImage').addEventListener('click', generateTalonarioImage);
+
+        function generateTalonarioImage() {
+            const total = totalNumbers();
+            const columns = total <= 10 ? 5 : total <= 100 ? 10 : 20;
+            const rows = Math.ceil(total / columns);
+
+            const dpr = 2;
+            const cell = 60;
+            const gap = 6;
+            const padding = 24;
+            const headerH = 130;
+            const legendH = 40;
+            const footerH = 40;
+
+            const gridW = columns * cell + (columns - 1) * gap;
+            const gridH = rows * cell + (rows - 1) * gap;
+            const width = gridW + padding * 2;
+            const height = headerH + legendH + gridH + footerH + padding * 2;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            const c = state.config;
+            const colors = {
+                bg: '#ffffff',
+                available: '#ffffff',
+                availableBorder: 'rgba(5, 64, 116, 0.25)',
+                taken: '#1c8a4b',
+                takenText: '#ffffff',
+                title: '#054074',
+                text: '#7A8087'
+            };
+
+            // Background
+            ctx.fillStyle = colors.bg;
+            ctx.fillRect(0, 0, width, height);
+
+            // Header
+            let y = padding;
+            ctx.fillStyle = colors.title;
+            ctx.font = 'bold 26px Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('🎟️ ' + (c.name || 'Talonario de Rifa'), width / 2, y + 28);
+
+            const subParts = [];
+            if (c.prize) subParts.push('Premio: ' + c.prize);
+            if (c.date) subParts.push('Sorteo: ' + c.date);
+            if (c.price) subParts.push('Valor: ' + formatMoney(c.price));
+            ctx.fillStyle = colors.text;
+            ctx.font = '16px Arial, sans-serif';
+            ctx.fillText(subParts.join('   ·   '), width / 2, y + 56);
+
+            // Legend
+            const legendY = headerH - 10;
+            const swatchSize = 14;
+            ctx.textAlign = 'left';
+            ctx.font = '14px Arial, sans-serif';
+
+            const legendItems = [
+                { color: colors.available, border: colors.availableBorder, label: 'Disponible' },
+                { color: colors.taken, border: colors.taken, label: 'Ocupado' }
+            ];
+            let legendX = width / 2 - 110;
+            legendItems.forEach(item => {
+                ctx.fillStyle = item.color;
+                ctx.strokeStyle = item.border;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.roundRect(legendX, legendY, swatchSize, swatchSize, 3);
+                ctx.fill();
+                ctx.stroke();
+                ctx.fillStyle = colors.text;
+                ctx.fillText(item.label, legendX + swatchSize + 8, legendY + swatchSize - 2);
+                legendX += 130;
+            });
+
+            // Grid
+            const gridTop = headerH + legendH;
+            let takenCount = 0;
+            for (let i = 0; i < total; i++) {
+                const numStr = pad(i);
+                const isTaken = !!state.tickets[numStr];
+                if (isTaken) takenCount++;
+
+                const col = i % columns;
+                const row = Math.floor(i / columns);
+                const x = padding + col * (cell + gap);
+                const cy = gridTop + row * (cell + gap);
+
+                ctx.fillStyle = isTaken ? colors.taken : colors.available;
+                ctx.strokeStyle = isTaken ? colors.taken : colors.availableBorder;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.roundRect(x, cy, cell, cell, 8);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = isTaken ? colors.takenText : colors.title;
+                ctx.font = 'bold 18px Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(numStr, x + cell / 2, cy + cell / 2 + 1);
+            }
+            ctx.textBaseline = 'alphabetic';
+
+            // Footer summary
+            ctx.fillStyle = colors.text;
+            ctx.font = '15px Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(
+                `Disponibles: ${total - takenCount}   ·   Ocupados: ${takenCount}   ·   Total: ${total}`,
+                width / 2,
+                gridTop + gridH + 30
+            );
+
+            const dataUrl = canvas.toDataURL('image/png');
+            const safeName = (c.name || 'talonario').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            const a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = (safeName || 'talonario') + '.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showToast('Imagen descargada');
+        }
 
         function downloadFile(content, filename, mime) {
             const blob = new Blob([content], { type: mime });
