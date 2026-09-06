@@ -6,24 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talonario de Rifa | Compacto Urbano</title>
     <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --celeste-oscuro: #054074;
-            --celeste: #1353AA;
-            --azul-claro: #77C9F2;
-            --gris: #7A8087;
+            /* Paleta llamativa: azul eléctrico + morado claro */
+            --blue: #2E5BFF;
+            --blue-deep: #1B2FA8;
+            --blue-bright: #4D7CFF;
+            --purple: #9B6BFF;
+            --purple-light: #C9AEFF;
+            --purple-pale: #F1E9FF;
+            --pink-accent: #FF6FD8;
+            --ink: #211B4E;
+            --gris: #6E6690;
             --white: #FFFFFF;
-            --bg: #f5f8fb;
-            --border: rgba(5, 64, 116, 0.14);
-            --surface: rgba(5, 64, 116, 0.04);
-            --radius: 8px;
-            --shadow-sm: 0 4px 20px rgba(5, 64, 116, 0.08);
-            --shadow-md: 0 12px 40px rgba(5, 64, 116, 0.12);
-            --ok: #1c8a4b;
-            --ok-bg: #e5f6ec;
-            --warn: #b8860b;
-            --warn-bg: #fdf3d9;
-            --font: "Century Gothic", "Tw Cen MT", "Trebuchet MS", Arial, sans-serif;
+            --bg: #F4F1FF;
+            --border: rgba(91, 66, 200, 0.16);
+            --surface: rgba(155, 107, 255, 0.08);
+            --radius: 16px;
+            --shadow-sm: 0 6px 20px rgba(72, 44, 173, 0.10);
+            --shadow-md: 0 18px 48px rgba(72, 44, 173, 0.20);
+            --glow: 0 0 0 4px rgba(155, 107, 255, 0.18);
+            --ok: #12b76a;
+            --ok-bg: #e3faf0;
+            --ok-deep: #067a47;
+            --warn: #f59e0b;
+            --warn-bg: #fff4dd;
+            --warn-deep: #a15c00;
+            --font: "Poppins", "Century Gothic", "Trebuchet MS", Arial, sans-serif;
+            --font-display: "Baloo 2", "Poppins", sans-serif;
         }
 
         * { box-sizing: border-box; }
@@ -31,131 +44,228 @@
         body {
             margin: 0;
             font-family: var(--font);
-            background: var(--bg);
-            color: var(--celeste-oscuro);
+            background:
+                radial-gradient(900px 500px at 90% -10%, rgba(255, 111, 216, 0.16), transparent 60%),
+                radial-gradient(900px 600px at -10% 0%, rgba(46, 91, 255, 0.14), transparent 55%),
+                var(--bg);
+            color: var(--ink);
             padding-bottom: 60px;
         }
 
         header.top {
-            background: linear-gradient(120deg, var(--celeste-oscuro), var(--celeste));
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(125deg, var(--blue-deep) 0%, var(--blue) 45%, var(--purple) 100%);
             color: var(--white);
-            padding: 28px 20px;
+            padding: 40px 20px 56px;
+            isolation: isolate;
+        }
+        header.top::before, header.top::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(6px);
+            z-index: -1;
+        }
+        header.top::before {
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%);
+            top: -110px; right: -60px;
+        }
+        header.top::after {
+            width: 320px; height: 320px;
+            background: radial-gradient(circle, rgba(255, 111, 216, 0.35), transparent 70%);
+            bottom: -180px; left: -80px;
         }
 
         .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
 
-        header.top h1 { margin: 0 0 4px; font-size: 1.6rem; }
-        header.top p { margin: 0; opacity: .85; font-size: .9rem; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.16);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 5px 14px; border-radius: 999px;
+            font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        header.top h1 {
+            margin: 0 0 6px;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            text-shadow: 0 4px 24px rgba(27, 21, 90, 0.35);
+        }
+        header.top > .wrap > p { margin: 0; opacity: .92; font-size: .95rem; max-width: 640px; }
 
         .raffle-meta {
-            display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 14px; font-size: .85rem;
+            display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;
         }
-        .raffle-meta span b { display: block; font-size: 1rem; }
+        .meta-chip {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(6px);
+            padding: 8px 14px 8px 10px;
+            border-radius: 14px;
+            font-size: .82rem;
+        }
+        .meta-chip .ico {
+            width: 26px; height: 26px; border-radius: 50%;
+            background: rgba(255,255,255,0.22);
+            display: flex; align-items: center; justify-content: center;
+            font-size: .9rem; flex: none;
+        }
+        .meta-chip b { display: block; font-size: .88rem; font-weight: 700; }
+        .meta-chip span.label { display: block; font-size: .68rem; opacity: .8; text-transform: uppercase; letter-spacing: .04em; }
 
         .panel {
             background: var(--white);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-            padding: 18px 20px;
-            margin-top: -18px;
+            border-radius: 22px;
+            box-shadow: var(--shadow-md);
+            padding: 22px 22px 26px;
+            margin-top: -32px;
             position: relative;
             z-index: 2;
         }
 
-        .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 20px; }
+        .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 4px; }
         .toolbar input[type=text], .toolbar select {
             font-family: var(--font);
-            padding: 9px 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
+            padding: 10px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
             font-size: .9rem;
+            background: var(--purple-pale);
+            color: var(--ink);
+            transition: border-color .15s ease, box-shadow .15s ease;
         }
-        .toolbar input[type=text] { flex: 1; min-width: 180px; }
+        .toolbar input[type=text] { flex: 1; min-width: 200px; }
+        .toolbar input[type=text]:focus, .toolbar select:focus {
+            outline: none; border-color: var(--purple); box-shadow: var(--glow); background: var(--white);
+        }
 
         button {
             font-family: var(--font);
             cursor: pointer;
             border: none;
-            border-radius: 6px;
-            padding: 9px 16px;
+            border-radius: 12px;
+            padding: 10px 18px;
             font-size: .85rem;
             font-weight: 600;
-            transition: transform .1s ease, opacity .15s ease;
+            transition: transform .12s ease, box-shadow .15s ease, opacity .15s ease;
         }
-        button:active { transform: scale(.97); }
-        .btn-primary { background: var(--celeste); color: var(--white); }
-        .btn-primary:hover { opacity: .9; }
-        .btn-ghost { background: var(--surface); color: var(--celeste-oscuro); }
-        .btn-ghost:hover { background: var(--border); }
-        .btn-danger { background: #fdeaea; color: #b3261e; }
-        .btn-danger:hover { opacity: .85; }
-        .btn-wa { background: #25D366; color: #fff; }
-        .btn-wa:hover { opacity: .9; }
+        button:active { transform: scale(.96); }
+        .btn-primary {
+            background: linear-gradient(120deg, var(--blue), var(--purple));
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(91, 66, 200, 0.32);
+        }
+        .btn-primary:hover { box-shadow: 0 10px 26px rgba(91, 66, 200, 0.42); transform: translateY(-1px); }
+        .btn-ghost { background: var(--purple-pale); color: var(--blue-deep); }
+        .btn-ghost:hover { background: var(--purple-light); color: var(--ink); }
+        .btn-danger { background: #ffe4ea; color: #c0195c; }
+        .btn-danger:hover { background: #ffd0dd; }
+        .btn-wa {
+            background: linear-gradient(120deg, #25D366, #16b757);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+        }
+        .btn-wa:hover { box-shadow: 0 10px 26px rgba(37, 211, 102, 0.45); transform: translateY(-1px); }
         button:disabled { opacity: .45; cursor: not-allowed; }
 
-        .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+        .stats { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
         .stat {
-            flex: 1; min-width: 120px;
-            background: var(--surface);
-            border-radius: 6px;
-            padding: 10px 14px;
+            flex: 1; min-width: 130px;
+            background: linear-gradient(160deg, var(--purple-pale), #fff);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex; align-items: center; gap: 10px;
         }
-        .stat b { display: block; font-size: 1.3rem; }
-        .stat span { font-size: .75rem; color: var(--gris); }
+        .stat .stat-ico {
+            width: 36px; height: 36px; border-radius: 10px; flex: none;
+            display: flex; align-items: center; justify-content: center; font-size: 1.05rem;
+            background: linear-gradient(135deg, var(--blue), var(--purple)); color: #fff;
+        }
+        .stat:nth-child(2) .stat-ico { background: linear-gradient(135deg, var(--ok), #34d399); }
+        .stat:nth-child(4) .stat-ico { background: linear-gradient(135deg, var(--warn), #fbbf24); }
+        .stat:nth-child(5) .stat-ico { background: linear-gradient(135deg, var(--pink-accent), var(--purple)); }
+        .stat b { display: block; font-size: 1.25rem; font-family: var(--font-display); color: var(--ink); line-height: 1.1; }
+        .stat span.label { font-size: .72rem; color: var(--gris); font-weight: 600; }
 
-        .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+        .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
         .filters button.tab {
-            background: var(--surface); color: var(--celeste-oscuro); padding: 6px 12px; font-size: .78rem;
+            background: var(--purple-pale); color: var(--blue-deep); padding: 7px 16px; font-size: .78rem;
+            border-radius: 999px;
         }
-        .filters button.tab.active { background: var(--celeste); color: var(--white); }
+        .filters button.tab.active {
+            background: linear-gradient(120deg, var(--blue), var(--purple));
+            color: var(--white);
+            box-shadow: 0 6px 16px rgba(91, 66, 200, 0.32);
+        }
 
         .grid-wrap { margin-top: 22px; }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
-            gap: 8px;
+            gap: 9px;
         }
         .cell {
             aspect-ratio: 1;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            background: var(--white);
+            border-radius: 12px;
+            border: 1.5px solid var(--border);
+            background: var(--purple-pale);
+            color: var(--blue-deep);
             font-weight: 700;
-            font-size: .95rem;
+            font-family: var(--font-display);
+            font-size: 1rem;
             cursor: pointer;
             position: relative;
-            transition: transform .1s ease;
+            transition: transform .12s ease, box-shadow .15s ease;
         }
-        .cell:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-        .cell.sold { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
-        .cell.pending { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); }
+        .cell:hover { transform: translateY(-3px) scale(1.04); box-shadow: var(--shadow-sm); border-color: var(--purple); }
+        .cell.sold {
+            background: linear-gradient(145deg, var(--ok), #0e9e5b);
+            border-color: var(--ok-deep); color: #fff;
+            box-shadow: 0 6px 16px rgba(18, 183, 106, 0.35);
+        }
+        .cell.pending {
+            background: linear-gradient(145deg, var(--warn), #e08e00);
+            border-color: var(--warn-deep); color: #fff;
+            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.32);
+        }
         .cell.hidden-by-filter { display: none; }
         .cell .dot {
-            position: absolute; top: 3px; right: 3px; width: 7px; height: 7px; border-radius: 50%;
+            position: absolute; top: 4px; right: 4px; width: 7px; height: 7px; border-radius: 50%;
+            background: rgba(255,255,255,0.85);
         }
-        .cell.sold .dot { background: var(--ok); }
-        .cell.pending .dot { background: var(--warn); }
 
         .empty-msg { text-align: center; color: var(--gris); padding: 30px; font-size: .9rem; }
 
         /* Modal */
         .overlay {
-            position: fixed; inset: 0; background: rgba(5,64,116,.45);
+            position: fixed; inset: 0; background: rgba(33, 27, 78, 0.55);
+            backdrop-filter: blur(2px);
             display: none; align-items: center; justify-content: center; padding: 16px; z-index: 50;
         }
         .overlay.open { display: flex; }
         .modal {
-            background: var(--white); border-radius: var(--radius); max-width: 440px; width: 100%;
-            padding: 24px; box-shadow: var(--shadow-md); max-height: 90vh; overflow-y: auto;
+            background: var(--white); border-radius: 20px; max-width: 440px; width: 100%;
+            padding: 26px; box-shadow: var(--shadow-md); max-height: 90vh; overflow-y: auto;
+            border-top: 5px solid transparent;
+            border-image: linear-gradient(120deg, var(--blue), var(--purple)) 1;
         }
-        .modal h2 { margin-top: 0; font-size: 1.1rem; }
+        .modal h2 { margin-top: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); }
         .field { margin-bottom: 14px; }
         .field label { display: block; font-size: .8rem; font-weight: 600; margin-bottom: 5px; color: var(--gris); }
         .field input[type=text], .field input[type=tel], .field input[type=date], .field input[type=number], .field textarea {
-            width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--font); font-size: .9rem;
+            width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 10px; font-family: var(--font); font-size: .9rem;
+            transition: border-color .15s ease, box-shadow .15s ease;
         }
+        .field input:focus, .field textarea:focus { outline: none; border-color: var(--purple); box-shadow: var(--glow); }
         .field textarea { resize: vertical; min-height: 80px; }
         .phone-row { display: flex; gap: 8px; }
         .phone-row input:first-child { width: 78px; flex: none; }
@@ -169,15 +279,16 @@
 
         .toast {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: var(--celeste-oscuro); color: var(--white); padding: 10px 18px;
-            border-radius: 6px; font-size: .85rem; opacity: 0; pointer-events: none; transition: opacity .25s ease;
+            background: linear-gradient(120deg, var(--blue-deep), var(--purple));
+            color: var(--white); padding: 11px 20px;
+            border-radius: 12px; font-size: .85rem; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease;
             z-index: 100; box-shadow: var(--shadow-md);
         }
         .toast.show { opacity: 1; }
 
-        .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .78rem; color: var(--gris); margin-top: 10px; }
-        .legend span { display: inline-flex; align-items: center; gap: 6px; }
-        .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+        .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: .78rem; color: var(--gris); margin-top: 12px; font-weight: 600; }
+        .legend span { display: inline-flex; align-items: center; gap: 7px; }
+        .swatch { width: 14px; height: 14px; border-radius: 5px; display: inline-block; }
 
         .footnote { max-width: 1100px; margin: 30px auto 0; padding: 0 16px; font-size: .78rem; color: var(--gris); line-height: 1.5; }
 
@@ -192,6 +303,7 @@
 
     <header class="top">
         <div class="wrap">
+            <span class="eyebrow">✨ Talonario digital</span>
             <h1 id="raffleTitle">🎟️ Talonario de Rifa</h1>
             <p id="raffleSubtitle">Configura tu rifa para empezar a asignar números.</p>
             <div class="raffle-meta" id="raffleMeta"></div>
@@ -212,11 +324,11 @@
             </div>
 
             <div class="stats">
-                <div class="stat"><b id="statTotal">0</b><span>Números totales</span></div>
-                <div class="stat"><b id="statSold">0</b><span>Vendidos</span></div>
-                <div class="stat"><b id="statAvail">0</b><span>Disponibles</span></div>
-                <div class="stat"><b id="statPending">0</b><span>Pendientes de pago</span></div>
-                <div class="stat"><b id="statRevenue">$0</b><span>Recaudado (pagados)</span></div>
+                <div class="stat"><span class="stat-ico">🎫</span><div><b id="statTotal">0</b><span class="label">Números totales</span></div></div>
+                <div class="stat"><span class="stat-ico">✅</span><div><b id="statSold">0</b><span class="label">Vendidos</span></div></div>
+                <div class="stat"><span class="stat-ico">🟣</span><div><b id="statAvail">0</b><span class="label">Disponibles</span></div></div>
+                <div class="stat"><span class="stat-ico">⏳</span><div><b id="statPending">0</b><span class="label">Pendientes de pago</span></div></div>
+                <div class="stat"><span class="stat-ico">💰</span><div><b id="statRevenue">$0</b><span class="label">Recaudado (pagados)</span></div></div>
             </div>
 
             <div class="filters">
@@ -227,7 +339,7 @@
             </div>
 
             <div class="legend">
-                <span><i class="swatch" style="background:var(--white);border:1px solid var(--border)"></i> Disponible</span>
+                <span><i class="swatch" style="background:var(--purple-pale);border:1.5px solid var(--border)"></i> Disponible</span>
                 <span><i class="swatch" style="background:var(--warn)"></i> Vendido / pendiente de pago</span>
                 <span><i class="swatch" style="background:var(--ok)"></i> Vendido / pagado</span>
             </div>
@@ -420,14 +532,33 @@
             showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
         }
 
+        function formatDateEs(iso) {
+            if (!iso) return '';
+            const [y, m, d] = iso.split('-');
+            if (!y || !m || !d) return iso;
+            const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+            return `${Number(d)} ${meses[Number(m) - 1]} ${y}`;
+        }
+
         function renderHeader() {
             const c = state.config;
             document.getElementById('raffleTitle').textContent = '🎟️ ' + (c.name || 'Talonario de Rifa');
-            const parts = [];
-            if (c.prize) parts.push('Premio: ' + c.prize);
-            if (c.date) parts.push('Sorteo: ' + c.date);
-            if (c.price) parts.push('Valor: ' + formatMoney(c.price));
-            document.getElementById('raffleSubtitle').textContent = parts.length ? parts.join(' · ') : 'Configura tu rifa para empezar a asignar números.';
+            document.getElementById('raffleSubtitle').textContent = c.prize
+                ? c.prize
+                : 'Configura tu rifa para empezar a asignar números.';
+
+            const meta = document.getElementById('raffleMeta');
+            meta.innerHTML = '';
+            const chips = [];
+            if (c.date) chips.push({ ico: '📅', label: 'Sorteo', value: formatDateEs(c.date) });
+            if (c.price) chips.push({ ico: '💵', label: 'Valor', value: formatMoney(c.price) });
+            chips.push({ ico: '🔢', label: 'Números', value: '00–' + pad(totalNumbers() - 1) });
+            chips.forEach(chip => {
+                const el = document.createElement('div');
+                el.className = 'meta-chip';
+                el.innerHTML = `<span class="ico">${chip.ico}</span><span><span class="label">${chip.label}</span><b>${chip.value}</b></span>`;
+                meta.appendChild(el);
+            });
         }
 
         function renderStats() {
