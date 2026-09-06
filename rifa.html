@@ -344,6 +344,46 @@
             tickets: {} // { "00": { name, country, phone, note, paid, assignedAt } }
         });
 
+        // Precarga inicial de la Rifa DJI Neo 2 — solo se usa la primera vez que se
+        // abre la página en un navegador sin datos guardados todavía.
+        const SEED_STATE = {
+            config: {
+                name: 'Rifa DJI Neo 2',
+                prize: 'Dron DJI Neo 2 con 2 baterías, control, cargador, hélices de repuesto, destornillador y baúl de seguridad — se define con los 2 últimos números de la Lotería de Santander',
+                date: '2026-09-25',
+                price: 20000,
+                digits: 2,
+                country: '57',
+                template: DEFAULT_TEMPLATE
+            },
+            tickets: {
+                '02': { name: 'Andrés (arquitecto)', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '06': { name: 'Graciela', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '08': { name: 'Daniel (Kaffeto)', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '10': { name: 'Alfredo (Gym)', country: '57', phone: '3213799236', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '12': { name: 'Yesid', country: '57', phone: '3022438520', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '14': { name: 'TJ House', country: '57', phone: '3022434643', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '16': { name: 'Daren (Gato)', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '17': { name: 'Nexo', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '18': { name: 'Editor Elvis', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '22': { name: 'Scarlet', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '24': { name: 'Briyit', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '26': { name: 'Nelson (Tío)', country: '57', phone: '', note: '', paid: true, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '31': { name: 'Gerson', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '33': { name: 'Pipe Osman', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '38': { name: 'Caliche', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '49': { name: 'Nubia Laura', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '56': { name: 'Erik (Gym)', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '64': { name: 'Santiago (Nexo)', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '66': { name: 'Gordo (Kaffeto)', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '67': { name: 'Gato', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '69': { name: 'Pipe (Kaffeto)', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '76': { name: 'Alfonso (Wendy)', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '78': { name: 'Tony', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' },
+                '85': { name: 'Jhon Jairo', country: '57', phone: '', note: '', paid: false, assignedAt: '2026-09-06T00:00:00.000Z' }
+            }
+        };
+
         let state = loadState();
         let currentFilter = 'all';
         let currentNumber = null;
@@ -351,7 +391,7 @@
         function loadState() {
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
-                if (!raw) return defaultState();
+                if (!raw) return JSON.parse(JSON.stringify(SEED_STATE));
                 const parsed = JSON.parse(raw);
                 return { ...defaultState(), ...parsed, config: { ...defaultState().config, ...parsed.config } };
             } catch (e) {
