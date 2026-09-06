@@ -796,6 +796,32 @@
         // ---- Download talonario as image ----
         document.getElementById('btnDownloadImage').addEventListener('click', generateTalonarioImage);
 
+        function wrapCanvasText(ctx, text, maxWidth, maxLines) {
+            const words = text.split(' ');
+            const allLines = [];
+            let current = '';
+            for (const word of words) {
+                const test = current ? current + ' ' + word : word;
+                if (ctx.measureText(test).width > maxWidth && current) {
+                    allLines.push(current);
+                    current = word;
+                } else {
+                    current = test;
+                }
+            }
+            if (current) allLines.push(current);
+
+            if (allLines.length <= maxLines) return allLines;
+
+            const lines = allLines.slice(0, maxLines);
+            let last = lines[maxLines - 1];
+            while (last.length > 1 && ctx.measureText(last + '…').width > maxWidth) {
+                last = last.slice(0, -1).trimEnd();
+            }
+            lines[maxLines - 1] = last + '…';
+            return lines;
+        }
+
         function generateTalonarioImage() {
             const total = totalNumbers();
             const columns = total <= 10 ? 5 : total <= 100 ? 10 : 20;
@@ -805,13 +831,36 @@
             const cell = 60;
             const gap = 6;
             const padding = 24;
-            const headerH = 130;
             const legendH = 40;
             const footerH = 40;
 
             const gridW = columns * cell + (columns - 1) * gap;
             const gridH = rows * cell + (rows - 1) * gap;
             const width = gridW + padding * 2;
+
+            const c = state.config;
+            const colors = {
+                bg: '#ffffff',
+                available: '#F1E9FF',
+                availableBorder: 'rgba(91, 66, 200, 0.35)',
+                taken: '#12b76a',
+                takenText: '#ffffff',
+                title: '#1B2FA8',
+                text: '#6E6690'
+            };
+
+            // Medimos el texto del encabezado con un canvas auxiliar para saber
+            // cuántas líneas necesita antes de fijar el alto final de la imagen.
+            const measureCtx = document.createElement('canvas').getContext('2d');
+            measureCtx.font = '16px Arial, sans-serif';
+            const subParts = [];
+            if (c.prize) subParts.push(c.prize);
+            const metaLine = [c.date ? 'Sorteo: ' + formatDateEs(c.date) : '', c.price ? 'Valor: ' + formatMoney(c.price) : ''].filter(Boolean).join('   ·   ');
+            const prizeLines = c.prize ? wrapCanvasText(measureCtx, subParts.join(' '), width - padding * 2, 2) : [];
+            const subtitleLineH = 22;
+            const titleH = 44;
+            const headerH = titleH + prizeLines.length * subtitleLineH + (metaLine ? subtitleLineH + 6 : 6) + 18;
+
             const height = headerH + legendH + gridH + footerH + padding * 2;
 
             const canvas = document.createElement('canvas');
@@ -819,17 +868,6 @@
             canvas.height = height * dpr;
             const ctx = canvas.getContext('2d');
             ctx.scale(dpr, dpr);
-
-            const c = state.config;
-            const colors = {
-                bg: '#ffffff',
-                available: '#ffffff',
-                availableBorder: 'rgba(5, 64, 116, 0.25)',
-                taken: '#1c8a4b',
-                takenText: '#ffffff',
-                title: '#054074',
-                text: '#7A8087'
-            };
 
             // Background
             ctx.fillStyle = colors.bg;
@@ -842,13 +880,18 @@
             ctx.textAlign = 'center';
             ctx.fillText('🎟️ ' + (c.name || 'Talonario de Rifa'), width / 2, y + 28);
 
-            const subParts = [];
-            if (c.prize) subParts.push('Premio: ' + c.prize);
-            if (c.date) subParts.push('Sorteo: ' + c.date);
-            if (c.price) subParts.push('Valor: ' + formatMoney(c.price));
             ctx.fillStyle = colors.text;
             ctx.font = '16px Arial, sans-serif';
-            ctx.fillText(subParts.join('   ·   '), width / 2, y + 56);
+            let textY = y + titleH + 6;
+            prizeLines.forEach(line => {
+                ctx.fillText(line, width / 2, textY);
+                textY += subtitleLineH;
+            });
+            if (metaLine) {
+                ctx.font = '600 15px Arial, sans-serif';
+                ctx.fillStyle = colors.title;
+                ctx.fillText(metaLine, width / 2, textY);
+            }
 
             // Legend
             const legendY = headerH - 10;
