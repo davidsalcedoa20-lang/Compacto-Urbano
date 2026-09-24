@@ -6,12 +6,15 @@ document.querySelectorAll('.slideshow').forEach((slideshow, slideshowIndex) => {
     let dots = [];
     const show = (index) => {
         slides[active].classList.remove('is-active');
+        slides[active].setAttribute('aria-hidden', 'true');
         dots[active].classList.remove('is-active');
-        active = index;
+        active = (index + slides.length) % slides.length;
         slides[active].classList.add('is-active');
+        slides[active].setAttribute('aria-hidden', 'false');
         dots[active].classList.add('is-active');
     };
-    slides.forEach((_, index) => {
+    slides.forEach((slide, index) => {
+        slide.setAttribute('aria-hidden', String(index !== 0));
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = `dot${index === 0 ? ' is-active' : ''}`;
@@ -20,7 +23,13 @@ document.querySelectorAll('.slideshow').forEach((slideshow, slideshowIndex) => {
         dotsWrap.appendChild(dot);
     });
     dots = [...dotsWrap.children];
-    window.setInterval(() => show((active + 1) % slides.length), 5200 + slideshowIndex * 250);
+    slideshow.querySelector('.hero-arrow--prev')?.addEventListener('click', () => show(active - 1));
+    slideshow.querySelector('.hero-arrow--next')?.addEventListener('click', () => show(active + 1));
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.setInterval(() => {
+            if (!document.hidden && !slideshow.matches(':hover, :focus-within')) show(active + 1);
+        }, 6200 + slideshowIndex * 250);
+    }
 });
 const menuButton = document.querySelector('.menu-button');
 const siteNav = document.querySelector('.site-nav');

@@ -1,0 +1,67 @@
+/* Rounded visual language across the site and service pages. */
+button,
+input[type="button"],
+input[type="submit"],
+.hero-cta,
+.contact-cta-button,
+.btn-cotizar {
+    border-radius: 999px;
+}
+
+img {
+    border-radius: 18px;
+}
+
+.brand-symbol img,
+.logo img,
+.cotizar-brand img {
+    border-radius: 0;
+}
+
+.service-card,
+.story-image,
+.service-hero,
+.hero-media,
+.timeline-card,
+.timeline-year,
+.thumbs img,
+.location iframe,
+.svc-hero-frame,
+.gi-hero-photo,
+.ph-hero-frame,
+.iv-hero-media,
+.gi-beneficios-frame,
+.ph-gallery-item,
+.iv-featured-media,
+.cotizar-visual-photo {
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.service-card img,
+.story-image img,
+.timeline-card img,
+.hero-media img,
+.svc-hero-frame img,
+.gi-hero-photo img,
+.ph-hero-frame img,
+.iv-hero-media img {
+    border-radius: inherit;
+}
+
+.dot,
+.timeline-arrow,
+.hero-arrow,
+.whatsapp,
+.cotizar-close {
+    border-radius: 50%;
+}
+
+@media (max-width: 680px) {
+    .service-hero,
+    .hero-media,
+    .story-image,
+    .location iframe {
+        border-radius: 18px;
+    }
+}

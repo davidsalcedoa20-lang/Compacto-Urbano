@@ -6,6 +6,7 @@
     <meta name="description" content="Compacto Urbano - inmobiliaria, interventoría y construcción.">
     <title>Compacto Urbano | Inmobiliaria, Interventoría y Construcción</title>
     <link rel="stylesheet" href="css/guia.css">
+    <link rel="stylesheet" href="css/rounding.css">
 </head>
 <body>
     <header class="brand-header" id="inicio">
@@ -16,31 +17,33 @@
                 <span class="brand-lines"><b>INMOBILIARIA</b><i>+</i><b class="red">INTERVENTORÍA</b><i>+</i><b>CONSTRUCCIÓN</b></span>
             </span>
         </a>
-        <nav class="socials" aria-label="Redes sociales">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="https://wa.me/573155597866" aria-label="WhatsApp">◔</a>
-            <a href="#" aria-label="X">x</a>
-            <a href="#" aria-label="Instagram">◎</a>
-        </nav>
         <button class="menu-button" type="button" aria-label="Abrir navegación" aria-expanded="false">☰</button>
         <nav class="site-nav" aria-label="Navegación principal">
+            <a href="#inicio">Inicio</a>
             <a href="#servicios">Servicios</a>
-            <a href="#inmobiliaria">Inmobiliaria</a>
-            <a href="#interventoria">Interventoría</a>
-            <a href="#construccion">Construcción</a>
-            <a href="#trayectoria">Trayectoria</a>
+            <a href="#trayectoria">Proyectos</a>
             <a href="#contacto">Contacto</a>
         </nav>
     </header>
 
     <main>
-        <section class="hero slideshow" aria-label="Bienvenida">
-            <div class="slide is-active" style="--image:url('../Imagenes/3. CONSTRUCCION/ESTRUCTURA METALICA - COMPACTO URBANO-CONEXION-compactourbano-diseño-.jpg')"></div>
-            <div class="slide" style="--image:url('../Imagenes/2. INTERVENTORIA/planeacion-obra-diseño-control-compactourbano-diseño-soldadura-pernos.jpg')"></div>
-            <div class="slide" style="--image:url('../Imagenes/1. INMOBILIARIA/1. venta-Arriendo-venta de Apartamentos-casas-vivienda-campestre-inmobiliaria-compactourbano.jpg')"></div>
-            <div class="shade"></div>
-            <div class="hero-copy"><p>Bienvenidos</p><h1><strong>Creemos</strong> en tus propósitos, por eso te ayudamos a construirlos.</h1></div>
-            <div class="dots" aria-label="Cambiar imagen"></div>
+        <section class="hero" aria-label="Bienvenida">
+            <div class="hero-copy">
+                <span class="hero-eyebrow">COMPACTO URBANO</span>
+                <h1>Espacios para<br>construir tu futuro</h1>
+                <p>Inmobiliaria, interventoría y construcción.</p>
+                <a class="hero-cta" href="https://wa.me/573155597866?text=Hola%2C%20quiero%20hablar%20sobre%20un%20proyecto%20con%20Compacto%20Urbano." target="_blank" rel="noopener noreferrer">Hablemos de tu proyecto <span aria-hidden="true">↗</span></a>
+                <span class="hero-note">Ciudades más humanas · Vidas más grandes</span>
+            </div>
+            <div class="hero-media slideshow" aria-label="Galería de proyectos de Compacto Urbano">
+                <img class="slide is-active" src="linea_de_tiempo/Conjunto Residencial Cataluña.jpg" alt="Conjunto Residencial Cataluña" fetchpriority="high">
+                <img class="slide" src="linea_de_tiempo/Conjunto Residencial Américas.jpg" alt="Vista aérea del Conjunto Residencial Américas" loading="lazy">
+                <img class="slide" src="linea_de_tiempo/Edificio Torre del Bosque Izquierdo.jpg" alt="Edificio Torre del Bosque Izquierdo" loading="lazy">
+                <div class="hero-media-caption">Proyectos que transforman entornos</div>
+                <button class="hero-arrow hero-arrow--prev" type="button" aria-label="Imagen anterior">‹</button>
+                <button class="hero-arrow hero-arrow--next" type="button" aria-label="Imagen siguiente">›</button>
+                <div class="dots" aria-label="Elegir imagen del carrusel"></div>
+            </div>
         </section>
 
         <section class="services" id="servicios">
