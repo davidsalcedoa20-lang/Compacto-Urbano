@@ -32,11 +32,24 @@ siteNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', 
     siteNav.classList.remove('is-open');
     menuButton?.setAttribute('aria-expanded', 'false');
 }));
-document.querySelector('#contactForm')?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    event.currentTarget.querySelector('.form-status').textContent = 'Gracias por contactarnos. Nos comunicaremos contigo lo antes posible.';
-    event.currentTarget.reset();
-});
+// Reveal content once as it enters the viewport. Reduced-motion visitors see it immediately.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealTargets = document.querySelectorAll('.section-title, .service-card, .story-copy, .story-image, .timeline-heading, .timeline-stage, .timeline-controls, .contact-details, .contact-cta, .location h2');
+if (!reduceMotion && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('has-reveal');
+    revealTargets.forEach((element, index) => {
+        element.classList.add('reveal-on-scroll');
+        if (element.classList.contains('service-card')) element.style.setProperty('--reveal-delay', `${(index % 3) * 90}ms`);
+    });
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+    revealTargets.forEach((element) => revealObserver.observe(element));
+}
 
 const timeline = document.querySelector('.timeline');
 if (timeline) {
