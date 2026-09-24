@@ -7,14 +7,17 @@ document.querySelectorAll('.slideshow').forEach((slideshow, slideshowIndex) => {
     const show = (index) => {
         slides[active].classList.remove('is-active');
         slides[active].setAttribute('aria-hidden', 'true');
+        slides[active].inert = true;
         dots[active].classList.remove('is-active');
         active = (index + slides.length) % slides.length;
         slides[active].classList.add('is-active');
         slides[active].setAttribute('aria-hidden', 'false');
+        slides[active].inert = false;
         dots[active].classList.add('is-active');
     };
     slides.forEach((slide, index) => {
         slide.setAttribute('aria-hidden', String(index !== 0));
+        slide.inert = index !== 0;
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = `dot${index === 0 ? ' is-active' : ''}`;
