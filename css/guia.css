@@ -293,6 +293,7 @@ a { color:inherit; text-decoration:none; }
 .service-hero-copy { bottom:13%; }
 .service-kicker { display:inline-block; margin-bottom:10px; padding:7px 12px; border:1px solid rgba(255,255,255,.7); border-radius:999px; color:#fff; font-size:13px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; backdrop-filter:blur(5px); }
 .split-story { margin-bottom:clamp(42px,6vw,82px); border:0; border-bottom:1px solid #c7d9e8; }
+.service-hero + .split-story { margin-top:clamp(28px,4vw,52px); }
 .thumbs { gap:12px; margin-top:16px; }
 .thumbs img { border:0; border-radius:4px; box-shadow:0 8px 22px rgba(20,52,78,.12); }
 .contact-details h3,.contact-details h4 { text-transform:none; }
