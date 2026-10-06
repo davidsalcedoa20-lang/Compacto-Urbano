@@ -1,4 +1,31 @@
-document.querySelectorAll('.slideshow').forEach((slideshow, slideshowIndex) => {
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Run each carousel only while it is on screen. Manual controls remain available.
+window.startCarouselAutoplay = (element, advance) => {
+    if (reduceMotion) return;
+    let timer = null;
+    const stop = () => {
+        window.clearInterval(timer);
+        timer = null;
+    };
+    const start = () => {
+        if (timer !== null) return;
+        timer = window.setInterval(() => {
+            if (!document.hidden) advance();
+        }, 2000);
+    };
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.intersectionRatio >= 0.35) start();
+            else stop();
+        }, { threshold: 0.35 });
+        observer.observe(element);
+    } else {
+        start();
+    }
+};
+
+document.querySelectorAll('.slideshow').forEach((slideshow) => {
     const slides = [...slideshow.querySelectorAll('.slide')];
     const dotsWrap = slideshow.querySelector('.dots');
     let active = 0;
@@ -28,11 +55,7 @@ document.querySelectorAll('.slideshow').forEach((slideshow, slideshowIndex) => {
     dots = [...dotsWrap.children];
     slideshow.querySelector('.hero-arrow--prev')?.addEventListener('click', () => show(active - 1));
     slideshow.querySelector('.hero-arrow--next')?.addEventListener('click', () => show(active + 1));
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        window.setInterval(() => {
-            if (!document.hidden && !slideshow.matches(':hover, :focus-within')) show(active + 1);
-        }, 6200 + slideshowIndex * 250);
-    }
+    window.startCarouselAutoplay(slideshow, () => show(active + 1));
 });
 const menuButton = document.querySelector('.menu-button');
 const siteNav = document.querySelector('.site-nav');
@@ -66,7 +89,6 @@ if ('IntersectionObserver' in window && observedSections.length) {
     observedSections.forEach((section) => navObserver.observe(section));
 }
 // Reveal content once as it enters the viewport. Reduced-motion visitors see it immediately.
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealTargets = document.querySelectorAll('.section-title, .service-card, .story-copy, .story-image, .timeline-heading, .timeline-stage, .timeline-controls, .contact-details, .contact-cta, .location h2');
 if (!reduceMotion && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('has-reveal');
@@ -112,7 +134,6 @@ if (timeline) {
     const years = [...new Set(projects.map((project) => project.year))];
     let active = projects.findIndex((project) => project.name.includes('Santa Lucía'));
     let dragStart = null;
-    let autoplayTimer = null;
 
     const yearButtons = years.map((year) => {
         const button = document.createElement('button');
@@ -169,13 +190,6 @@ if (timeline) {
         active = (active + step + projects.length) % projects.length;
         renderTimeline();
     };
-    const startAutoplay = () => {
-        if (reduceMotion) return;
-        window.clearInterval(autoplayTimer);
-        autoplayTimer = window.setInterval(() => {
-            if (!document.hidden && !timeline.matches(':hover, :focus-within')) move(1);
-        }, 7000);
-    };
     timeline.querySelector('.timeline-arrow--prev').addEventListener('click', () => move(-1));
     timeline.querySelector('.timeline-arrow--next').addEventListener('click', () => move(1));
     previous.addEventListener('click', () => move(-1));
@@ -204,5 +218,5 @@ if (timeline) {
         stage.classList.remove('is-dragging');
     });
     renderTimeline();
-    startAutoplay();
+    window.startCarouselAutoplay(timeline, () => move(1));
 }

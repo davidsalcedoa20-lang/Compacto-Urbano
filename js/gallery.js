@@ -40,15 +40,18 @@
         previous.textContent = '‹';
         next.textContent = '›';
         gallery.append(previous, track, next);
-        const step = (direction) => track.scrollBy({ left: direction * (track.querySelector('img').getBoundingClientRect().width + 12), behavior:'smooth' });
+        const step = (direction) => {
+            const end = track.scrollWidth - track.clientWidth;
+            if (direction > 0 && track.scrollLeft >= end - 4) {
+                track.scrollTo({ left:0, behavior:'smooth' });
+            } else if (direction < 0 && track.scrollLeft <= 4) {
+                track.scrollTo({ left:end, behavior:'smooth' });
+            } else {
+                track.scrollBy({ left:direction * (track.querySelector('img').getBoundingClientRect().width + 12), behavior:'smooth' });
+            }
+        };
         previous.addEventListener('click', () => step(-1));
         next.addEventListener('click', () => step(1));
-        const update = () => {
-            previous.disabled = track.scrollLeft < 2;
-            next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
-        };
-        track.addEventListener('scroll', update, { passive:true });
-        window.addEventListener('resize', update);
-        update();
+        window.startCarouselAutoplay(gallery, () => step(1));
     });
 })();
