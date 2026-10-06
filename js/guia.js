@@ -44,6 +44,27 @@ siteNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', 
     siteNav.classList.remove('is-open');
     menuButton?.setAttribute('aria-expanded', 'false');
 }));
+
+// Keep the current section visible in the primary navigation.
+const sectionLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+const observedSections = sectionLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+if ('IntersectionObserver' in window && observedSections.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        sectionLinks.forEach((link) => {
+            const active = link.getAttribute('href') === `#${visible.target.id}`;
+            link.classList.toggle('is-active', active);
+            if (active) link.setAttribute('aria-current', 'page');
+            else link.removeAttribute('aria-current');
+        });
+    }, { rootMargin:'-20% 0px -65% 0px', threshold:[0, .15, .4] });
+    observedSections.forEach((section) => navObserver.observe(section));
+}
 // Reveal content once as it enters the viewport. Reduced-motion visitors see it immediately.
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealTargets = document.querySelectorAll('.section-title, .service-card, .story-copy, .story-image, .timeline-heading, .timeline-stage, .timeline-controls, .contact-details, .contact-cta, .location h2');
@@ -91,6 +112,7 @@ if (timeline) {
     const years = [...new Set(projects.map((project) => project.year))];
     let active = projects.findIndex((project) => project.name.includes('Santa Lucía'));
     let dragStart = null;
+    let autoplayTimer = null;
 
     const yearButtons = years.map((year) => {
         const button = document.createElement('button');
@@ -147,6 +169,13 @@ if (timeline) {
         active = (active + step + projects.length) % projects.length;
         renderTimeline();
     };
+    const startAutoplay = () => {
+        if (reduceMotion) return;
+        window.clearInterval(autoplayTimer);
+        autoplayTimer = window.setInterval(() => {
+            if (!document.hidden && !timeline.matches(':hover, :focus-within')) move(1);
+        }, 7000);
+    };
     timeline.querySelector('.timeline-arrow--prev').addEventListener('click', () => move(-1));
     timeline.querySelector('.timeline-arrow--next').addEventListener('click', () => move(1));
     previous.addEventListener('click', () => move(-1));
@@ -158,6 +187,9 @@ if (timeline) {
         if (event.key === 'ArrowRight') move(1);
     });
     stage.addEventListener('pointerdown', (event) => {
+        // Pointer capture on a button retargets its click to the stage, so leave
+        // arrows, year controls and expandable photos to their own handlers.
+        if (event.target.closest('button, img, a')) return;
         dragStart = event.clientX;
         stage.classList.add('is-dragging');
         stage.setPointerCapture?.(event.pointerId);
@@ -172,4 +204,5 @@ if (timeline) {
         stage.classList.remove('is-dragging');
     });
     renderTimeline();
+    startAutoplay();
 }

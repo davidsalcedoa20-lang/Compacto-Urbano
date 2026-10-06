@@ -5,7 +5,7 @@
     "metaTitle": "Gestión Inmobiliaria | Compacto Urbano",
     "metaDescription": "Acompañamiento en arriendo, compra, venta y avalúo de inmuebles. Gestión enfocada en proteger el valor de su patrimonio.",
     "hero": {
-      "eyebrow": "GESTIÓN INMOBILIARIA",
+      "eyebrow": "Gestión inmobiliaria",
       "titleHtml": "Gestionamos sus inmuebles para que usted pueda enfocarse en <span class=\"accent\">lo importante.</span>",
       "lead": "Ofrecemos acompañamiento en la gestión de inmuebles, facilitando procesos de arriendo, compra, venta y avalúo, con una gestión enfocada en proteger el valor y la tranquilidad de nuestros clientes.",
       "image": "../img/servicios/propiedad.jpg",
@@ -18,7 +18,7 @@
       ]
     },
     "intro": {
-      "eyebrow": "¿QUÉ INCLUYE?",
+      "eyebrow": "¿Qué incluye?",
       "titleHtml": "Líneas de gestión para <span class=\"accent\">su patrimonio</span>",
       "desc": "Acompañamos a propietarios e inversionistas en las decisiones y operaciones del inmueble, con claridad en cada etapa del proceso.",
       "cards": [
@@ -31,7 +31,7 @@
       ]
     },
     "proceso": {
-      "eyebrow": "¿CÓMO FUNCIONA?",
+      "eyebrow": "¿Cómo funciona?",
       "titleHtml": "Así acompañamos <span class=\"accent\">cada operación</span>",
       "steps": [
         { "icon": "search", "title": "Diagnóstico", "text": "Conocemos el inmueble, su situación actual y el objetivo del propietario." },
@@ -42,7 +42,7 @@
       ]
     },
     "beneficios": {
-      "eyebrow": "BENEFICIOS",
+      "eyebrow": "Beneficios",
       "titleHtml": "Decisiones más claras sobre <span class=\"accent\">su patrimonio</span>",
       "items": [
         { "icon": "star", "title": "Enfoque en el patrimonio", "text": "Más que gestionar propiedades, ayudamos a tomar mejores decisiones sobre su patrimonio." },
@@ -66,7 +66,7 @@
     "metaTitle": "Propiedad Horizontal | Compacto Urbano",
     "metaDescription": "Administración de copropiedades y edificios orientada a preservar y potenciar el patrimonio colectivo.",
     "hero": {
-      "eyebrow": "PROPIEDAD HORIZONTAL",
+      "eyebrow": "Propiedad horizontal",
       "titleHtml": "Administración que preserva y potencia el <span class=\"accent\">patrimonio colectivo.</span>",
       "lead": "Gestionamos copropiedades y edificios mediante una administración que combina dirección, coordinación y seguimiento, para una operación organizada, transparente y orientada a la valorización de la propiedad.",
       "image": "../img/servicios/propiedad.jpg",
@@ -79,7 +79,7 @@
       ]
     },
     "intro": {
-      "eyebrow": "¿QUÉ INCLUYE?",
+      "eyebrow": "¿Qué incluye?",
       "titleHtml": "Administración de copropiedades con <span class=\"accent\">dirección y control</span>",
       "desc": "Atendemos la operación de edificios y conjuntos con foco en el patrimonio colectivo, la coordinación diaria y la supervisión permanente de la propiedad.",
       "cards": [
@@ -92,7 +92,7 @@
       ]
     },
     "proceso": {
-      "eyebrow": "¿CÓMO FUNCIONA?",
+      "eyebrow": "¿Cómo funciona?",
       "titleHtml": "Así administramos su <span class=\"accent\">copropiedad</span>",
       "steps": [
         { "icon": "search", "title": "Diagnóstico", "text": "Revisamos reglamento, estados, cartera y condición de zonas comunes." },
@@ -103,7 +103,7 @@
       ]
     },
     "beneficios": {
-      "eyebrow": "BENEFICIOS",
+      "eyebrow": "Beneficios",
       "titleHtml": "Operación ordenada para <span class=\"accent\">generar confianza</span>",
       "items": [
         { "icon": "star", "title": "Patrimonio colectivo", "text": "Una gestión eficiente para conservar el patrimonio, mejorar la operación y generar confianza en cada decisión." },
@@ -127,7 +127,7 @@
     "metaTitle": "Interventoría | Compacto Urbano",
     "metaDescription": "Consultoría, interventoría y dirección de proyectos de infraestructura civil y arquitectónica.",
     "hero": {
-      "eyebrow": "INTERVENTORÍA",
+      "eyebrow": "Interventoría",
       "titleHtml": "Supervisión estratégica para proyectos que <span class=\"accent\">deben cumplir.</span>",
       "lead": "Brindamos consultoría, interventoría y dirección de proyectos de infraestructura civil y arquitectónica, con seguimiento técnico y administrativo durante las diferentes etapas de ejecución.",
       "image": "../img/servicios/interventoria.jpg",
@@ -140,7 +140,7 @@
       ]
     },
     "intro": {
-      "eyebrow": "¿QUÉ INCLUYE?",
+      "eyebrow": "¿Qué incluye?",
       "titleHtml": "Acompañamiento técnico para <span class=\"accent\">obras que avanzan con control</span>",
       "desc": "Cubrimos consultoría, interventoría y dirección en proyectos de infraestructura civil y arquitectónica, con foco en prevenir desviaciones y mejorar la eficiencia del proceso constructivo.",
       "cards": [
@@ -153,7 +153,7 @@
       ]
     },
     "proceso": {
-      "eyebrow": "¿CÓMO FUNCIONA?",
+      "eyebrow": "¿Cómo funciona?",
       "titleHtml": "Seguimiento en cada etapa del <span class=\"accent\">proyecto</span>",
       "steps": [
         { "icon": "plan", "title": "Planeación", "text": "Definimos alcance, criterios de control e indicadores de seguimiento." },
@@ -164,7 +164,7 @@
       ]
     },
     "beneficios": {
-      "eyebrow": "BENEFICIOS",
+      "eyebrow": "Beneficios",
       "titleHtml": "Control para una ejecución <span class=\"accent\">más eficiente</span>",
       "items": [
         { "icon": "star", "title": "Prevención y eficiencia", "text": "Prevenimos riesgos, optimizamos recursos y contribuimos a una ejecución más eficiente de cada proyecto." },
