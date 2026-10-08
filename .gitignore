@@ -7,3 +7,6 @@
 /.preview/
 /PAGINA WEB_26-07-2023.pdf
 /propuestas-linea-tiempo/
+
+.vercel
+.env*

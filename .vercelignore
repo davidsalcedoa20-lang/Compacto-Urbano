@@ -1,0 +1,9 @@
+.git
+.sites-runtime
+.preview
+.vercel-cli
+propuestas-linea-tiempo
+tmp
+*.pptx
+*.pdf
+*.db
