@@ -5,7 +5,8 @@
   "scripts": {
     "inventory": "node scripts/inventory.mjs",
     "build": "node scripts/inventory.mjs && node scripts/build.mjs",
-    "check": "node scripts/inventory.mjs --check && node --check js/site-images.js && node --check admin/admin.js"
+    "check": "node scripts/inventory.mjs --check && node --check js/site-images.js && node --check admin/admin.js && node --check scripts/bootstrap-admin.mjs",
+    "bootstrap-admin": "node scripts/bootstrap-admin.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.75.0"
