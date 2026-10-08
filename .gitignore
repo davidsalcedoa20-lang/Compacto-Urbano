@@ -1,4 +1,6 @@
 /dist/
+/node_modules/
+/supabase/.temp/
 /.sites-runtime/
 /.vercel-cli/
 /.vercel/

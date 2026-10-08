@@ -1,0 +1,16 @@
+{
+  "name": "compacto-urbano",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "inventory": "node scripts/inventory.mjs",
+    "build": "node scripts/inventory.mjs && node scripts/build.mjs",
+    "check": "node scripts/inventory.mjs --check && node --check js/site-images.js && node --check admin/admin.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.75.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}
