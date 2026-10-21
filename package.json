@@ -5,13 +5,16 @@
   "scripts": {
     "inventory": "node scripts/inventory.mjs",
     "build": "node scripts/inventory.mjs && node scripts/build.mjs",
-    "check": "node scripts/inventory.mjs --check && node --check js/site-images.js && node --check admin/admin.js && node --check scripts/bootstrap-admin.mjs",
-    "bootstrap-admin": "node scripts/bootstrap-admin.mjs"
+    "check": "node scripts/inventory.mjs --check && node --check js/site-images.js && node --check admin/admin.js && node --check scripts/bootstrap-admin.mjs && node --check scripts/smoke-admin.mjs && node --check scripts/smoke-browser.mjs",
+    "bootstrap-admin": "node scripts/bootstrap-admin.mjs",
+    "smoke-admin": "node scripts/smoke-admin.mjs",
+    "smoke-browser": "node scripts/smoke-browser.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.75.0"
   },
   "devDependencies": {
-    "esbuild": "0.25.12"
+    "esbuild": "0.25.12",
+    "playwright-core": "1.64.1"
   }
 }
