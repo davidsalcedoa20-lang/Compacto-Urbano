@@ -5,11 +5,12 @@
   "scripts": {
     "inventory": "node scripts/inventory.mjs",
     "build": "node scripts/inventory.mjs && node scripts/build.mjs",
-    "check": "node scripts/inventory.mjs --check && node --check js/site-images.js && node --check js/site-content.js && node --check js/guia.js && node --check js/gallery.js && node --check admin/admin.js && node --check admin/content-editor.js && node --check scripts/bootstrap-admin.mjs && node --check scripts/smoke-admin.mjs && node --check scripts/smoke-browser.mjs && node --check scripts/smoke-content.mjs",
+    "check": "node scripts/inventory.mjs --check && node --check js/site-images.js && node --check js/site-content.js && node --check js/contact-sync.js && node --check js/guia.js && node --check js/gallery.js && node --check admin/admin.js && node --check admin/content-editor.js && node --check scripts/bootstrap-admin.mjs && node --check scripts/smoke-admin.mjs && node --check scripts/smoke-browser.mjs && node --check scripts/smoke-content.mjs",
     "bootstrap-admin": "node scripts/bootstrap-admin.mjs",
     "smoke-admin": "node scripts/smoke-admin.mjs",
     "smoke-browser": "node scripts/smoke-browser.mjs",
-    "smoke-content": "node scripts/smoke-content.mjs"
+    "smoke-content": "node scripts/smoke-content.mjs",
+    "smoke-service-contact": "node scripts/smoke-service-contact.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.75.0"

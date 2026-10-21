@@ -251,7 +251,7 @@
         const card = document.querySelector("#cotizarModal .whatsapp-card");
         if (!card || !svc.cta?.whatsappMessage) return;
         const msg = encodeURIComponent(svc.cta.whatsappMessage);
-        card.href = `https://wa.me/573176740334?text=${msg}`;
+        card.href = `https://wa.me/573155597866?text=${msg}`;
     };
 
     const init = async () => {
