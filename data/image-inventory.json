@@ -5,7 +5,7 @@
     "alt": "ESTRUCTURA METALICA   COMPACTO URBANO CONEXION compactourbano diseño ",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -13,7 +13,8 @@
     "section": "Construcción",
     "alt": "FACHaDA FLOTANTE pergola construccion campestres porteria de acceso conjuntoresidencial ESTRUCTURA METALICA CONEXION compactourbano diseño soldadura ",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -21,7 +22,7 @@
     "section": "Construcción",
     "alt": "FACHaDA FLOTANTE pergola construccion campestres porteria de acceso conjuntoresidencial ESTRUCTURA METALICA CONEXION compactourbano diseño soldadura pernos",
     "appearances": [
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -29,7 +30,8 @@
     "section": "Construcción",
     "alt": "FACHaDA FLOTANTE pergola construccion campestres porteria de acceso conjuntoresidencial ESTRUCTURA METALICA CONEXION compactourbano diseño soldadura pernos",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -37,7 +39,7 @@
     "section": "Construcción",
     "alt": "FACHaDA FLOTANTE pergola construccion campestres porteria de acceso conjuntoresidencialESTRUCTURA METALICA CONEXION compactourbano diseño soldadura pernos",
     "appearances": [
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -46,7 +48,7 @@
     "alt": "FACHaDA FLOTANTE pergola construccion conjuntoresidencial ESTRUCTURA METALICA CONEXION compactourbano diseño soldadura pernos",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -54,7 +56,8 @@
     "section": "Construcción",
     "alt": "SALON   COLISEO   COMPACTO URBANO",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -80,7 +83,7 @@
     "alt": "1. venta Arriendo venta de Apartamentos casas vivienda campestre inmobiliaria compactourbano",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -88,7 +91,8 @@
     "section": "Inmobiliaria",
     "alt": "2. Arriendo venta de Apartamentos casas vivienda campestre inmobiliaria compactourbano cortes&useche",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -97,7 +101,7 @@
     "alt": "3. casa Arriendo venta de Apartamentos casas vivienda campestre inmobiliaria compactourbano",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -106,7 +110,7 @@
     "alt": "4. inmobiliaria compactourbano valores compactourbano cortes&useche",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -114,7 +118,8 @@
     "section": "Inmobiliaria",
     "alt": "se arrienda compactourbano inmobiliaria bogota colombia inmueble arriendo compactourbano cortes&useche",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -122,7 +127,8 @@
     "section": "Inmobiliaria",
     "alt": "se vende inmobiliaria compactourbano cortes&useches vivienda",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -144,7 +150,8 @@
     "section": "Interventoría",
     "alt": "DIRECCION DE OBRA COMPACTO URBANO",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -153,7 +160,7 @@
     "alt": "ESTRUCTURA   COMPACTO URBANO",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -168,7 +175,7 @@
     "alt": "INTERVENTORIA   COMPACTO URBANO",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -182,7 +189,8 @@
     "section": "Interventoría",
     "alt": "OBRA CIVIL   COMPACTO URBANO",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -191,7 +199,7 @@
     "alt": "planeacion obra diseño control compactourbano diseño soldadura pernos",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -199,7 +207,8 @@
     "section": "Interventoría",
     "alt": "SEGURIDAD TRANQUILIDAD COSNTRUCCION   COMPACTO URBANO",
     "appearances": [
-      "index.html"
+      "index.html",
+      "data/site-content.json"
     ]
   },
   {
@@ -208,7 +217,7 @@
     "alt": "SUPERVISION DE OBRA   COMPACTO URBANO",
     "appearances": [
       "index.html",
-      "js/gallery.js"
+      "data/site-content.json"
     ]
   },
   {
@@ -242,7 +251,8 @@
     "section": "Proyectos y experiencia",
     "alt": "Cedro Golf",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -250,7 +260,8 @@
     "section": "Proyectos y experiencia",
     "alt": "Conjunto Acanto",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -258,7 +269,8 @@
     "section": "Proyectos y experiencia",
     "alt": "Conjunto Residencial Akanra",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -267,7 +279,8 @@
     "alt": "Conjunto Residencial Américas",
     "appearances": [
       "index.html",
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -275,7 +288,8 @@
     "section": "Proyectos y experiencia",
     "alt": "Conjunto Residencial Casa Grande",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -284,7 +298,8 @@
     "alt": "Conjunto Residencial Cataluña",
     "appearances": [
       "index.html",
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -292,7 +307,8 @@
     "section": "Proyectos y experiencia",
     "alt": "Conjunto Residencial Las Galias",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -300,7 +316,8 @@
     "section": "Proyectos y experiencia",
     "alt": "edificio kasaury",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -308,7 +325,8 @@
     "section": "Proyectos y experiencia",
     "alt": "Edificio Profesionales Tempo",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -316,7 +334,8 @@
     "section": "Proyectos y experiencia",
     "alt": "Edificio Tierra Firme",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -325,7 +344,8 @@
     "alt": "Edificio Torre del Bosque Izquierdo",
     "appearances": [
       "index.html",
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -333,7 +353,8 @@
     "section": "Proyectos y experiencia",
     "alt": "edificio yerbabuena",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -342,7 +363,8 @@
     "alt": "Parque Empresarial e Industrial Santa Lucía 05 133536",
     "appearances": [
       "index.html",
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {
@@ -350,7 +372,8 @@
     "section": "Proyectos y experiencia",
     "alt": "Sabana Grande Reservado 4",
     "appearances": [
-      "js/guia.js"
+      "js/guia.js",
+      "data/site-content.json"
     ]
   },
   {

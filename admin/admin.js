@@ -1,4 +1,5 @@
 import { supabase } from '../js/supabase-client.js';
+import { initContentEditor } from './content-editor.js';
 
 const $ = (selector) => document.querySelector(selector);
 const message = (selector, value) => { const node = $(selector); if (node) node.textContent = value; };
@@ -29,6 +30,7 @@ if (loginPage) {
   isAdmin().then(ok => { if (ok) location.replace('/admin'); });
 } else {
   const state = { rows: [], published: new Map(), active: null, file: null };
+  let contentEditor;
   const dialog = $('#editor');
   const fallback = (row) => row.original_path;
   const current = (row) => state.published.get(row.original_path)?.public_url || fallback(row);
@@ -73,7 +75,7 @@ if (loginPage) {
     $('#new-preview').src = current(row);
     $('#image-alt').value = state.published.get(path)?.alt || row.alt;
     $('#image-file').value = '';
-    $('#restore-image').disabled = !state.published.has(path);
+    $('#restore-image').disabled = !state.published.has(path) || path.startsWith('/content/');
     message('#editor-message', '');
     dialog.showModal();
   }
@@ -108,6 +110,7 @@ if (loginPage) {
 
   async function restore() {
     const row = state.active;
+    if (row.original_path.startsWith('/content/')) return message('#editor-message', 'Esta foto pertenece al editor de contenido. Cámbiala en su sección antes de retirarla.');
     const previous = state.published.get(row.original_path);
     if (!previous) return;
     $('#restore-image').disabled = true;
@@ -121,7 +124,13 @@ if (loginPage) {
   async function showHistory() {
     const { data, error } = await supabase.from('image_changes').select('original_path,action,changed_at,previous_path,new_path').order('changed_at', { ascending: false }).limit(100);
     if (error) return err(error);
-    $('#history-list').innerHTML = (data || []).map(row => `<article class="history-entry"><strong>${row.action === 'restored' ? 'Restaurada' : 'Publicada'}</strong><span>${escapeHtml(row.original_path)}</span><time>${new Date(row.changed_at).toLocaleString('es-CO')}</time></article>`).join('') || '<p>Aún no hay modificaciones.</p>';
+    let contentHistory = [];
+    try { contentHistory = await contentEditor?.history() || []; } catch (historyError) { err(historyError); }
+    const entries = [
+      ...(data || []).map(row => ({ label: row.action === 'restored' ? 'Imagen restaurada' : 'Imagen publicada', detail: row.original_path, changed_at: row.changed_at })),
+      ...contentHistory
+    ].sort((a, b) => new Date(b.changed_at) - new Date(a.changed_at)).slice(0, 100);
+    $('#history-list').innerHTML = entries.map(row => `<article class="history-entry"><strong>${escapeHtml(row.label)}</strong><span>${escapeHtml(row.detail)}</span><time>${new Date(row.changed_at).toLocaleString('es-CO')}</time></article>`).join('') || '<p>Aún no hay modificaciones.</p>';
   }
 
   async function init() {
@@ -129,6 +138,7 @@ if (loginPage) {
     const { data: { user } } = await supabase.auth.getUser();
     $('#current-email').textContent = user.email || '';
     await load();
+    contentEditor = await initContentEditor({ supabase, imageState: state, refreshImages: load, notify: value => message('#admin-message', value) });
   }
   if (!supabase) location.replace('/admin/login'); else init();
   $('#image-grid').addEventListener('click', event => { const button = event.target.closest('[data-edit]'); if (button) openEditor(button.dataset.edit); });
@@ -147,8 +157,8 @@ if (loginPage) {
   $('#restore-image').addEventListener('click', restore);
   document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('[data-view]').forEach(item => item.classList.toggle('active', item === button));
-    for (const view of ['images', 'history', 'settings']) $(`#${view}-view`).hidden = button.dataset.view !== view;
-    $('#view-title').textContent = ({ images: 'Imágenes de la página', history: 'Historial de cambios', settings: 'Ajustes de la cuenta' })[button.dataset.view];
+    for (const view of ['images', 'timeline', 'hero', 'services', 'contact', 'history', 'settings']) $(`#${view}-view`).hidden = button.dataset.view !== view;
+    $('#view-title').textContent = ({ images: 'Imágenes de la página', timeline: 'Línea de tiempo', hero: 'Carrusel principal', services: 'Servicios', contact: 'Contacto', history: 'Historial de cambios', settings: 'Ajustes de la cuenta' })[button.dataset.view];
     if (button.dataset.view === 'history') showHistory();
   }));
   $('#signout').addEventListener('click', async () => { await supabase.auth.signOut({ scope: 'global' }); location.replace('/admin/login'); });
