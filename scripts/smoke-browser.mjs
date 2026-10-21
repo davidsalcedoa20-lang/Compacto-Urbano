@@ -7,6 +7,12 @@ const password = process.env.ADMIN_PASSWORD;
 if (!email || !password) throw new Error('Faltan ADMIN_EMAIL y ADMIN_PASSWORD.');
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const page = await browser.newPage();
+if (process.env.VERCEL_OIDC_TOKEN) {
+  const origin = new URL(base).origin;
+  await page.route(`${origin}/**`, route => route.continue({
+    headers: { ...route.request().headers(), 'x-vercel-trusted-oidc-idp-token': process.env.VERCEL_OIDC_TOKEN }
+  }));
+}
 try {
   await page.goto(`${base}/admin`, { waitUntil: 'domcontentloaded' });
   await page.waitForURL('**/admin/login', { timeout: 20000 });

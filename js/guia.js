@@ -108,7 +108,7 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
 
 const timeline = document.querySelector('.timeline');
 if (timeline) {
-    const projects = [
+    const projects = window.siteContent?.timeline?.length ? window.siteContent.timeline : [
         { year:'2012', period:'2012 — 2013', name:'Conjunto Sabana Grande Reservado 4', type:'Residencial', location:'Bogotá · Zona Franca', image:'linea_de_tiempo/Sabana Grande Reservado 4.jpg' },
         { year:'2013', period:'2013 — 2015', name:'Edificio Torre del Bosque Izquierdo', type:'Residencial', location:'Bogotá · Bosque Izquierdo', image:'linea_de_tiempo/Edificio Torre del Bosque Izquierdo.jpg' },
         { year:'2015', period:'2015 — 2016', name:'Edificio Kasaury', type:'Residencial', location:'Bogotá · Suba', image:'linea_de_tiempo/edificio kasaury.jpg' },
@@ -152,6 +152,9 @@ if (timeline) {
     const fillSideCard = (card, project) => {
         const image = card.querySelector('img');
         image.src = project.image;
+        image.dataset.originalImage = project.image;
+        image.dataset.fallbackImage = project.fallbackImage || 'linea_de_tiempo/Conjunto Residencial Cataluña.jpg';
+        image.onerror = () => { image.onerror = null; image.src = image.dataset.fallbackImage; };
         image.alt = '';
         card.querySelector('h3').textContent = project.name;
         card.querySelector('p').textContent = project.period;
@@ -163,9 +166,20 @@ if (timeline) {
         const after = projects[(active + 1) % projects.length];
         const image = featured.querySelector('.timeline-featured-image');
         image.src = project.image;
+        image.dataset.originalImage = project.image;
+        image.dataset.fallbackImage = project.fallbackImage || 'linea_de_tiempo/Conjunto Residencial Cataluña.jpg';
+        image.onerror = () => { image.onerror = null; image.src = image.dataset.fallbackImage; };
         image.alt = project.name;
         featured.querySelector('.timeline-period').textContent = project.period;
         featured.querySelector('h3').textContent = project.name;
+        let description = featured.querySelector('.timeline-description');
+        if (!description) {
+            description = document.createElement('p');
+            description.className = 'timeline-description';
+            featured.querySelector('.timeline-facts').before(description);
+        }
+        description.textContent = project.description || '';
+        description.hidden = !description.textContent;
         const facts = featured.querySelectorAll('.timeline-facts strong');
         facts[0].textContent = project.type;
         facts[1].textContent = project.location;

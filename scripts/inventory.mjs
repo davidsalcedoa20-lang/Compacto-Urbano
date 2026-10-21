@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const sources = ['index.html', ...fs.readdirSync('servicios').filter(x => x.endsWith('.html')).map(x => `servicios/${x}`), ...fs.readdirSync('js').filter(x => x.endsWith('.js') && x !== 'site-images.js').map(x => `js/${x}`), 'data/servicios.json', 'data/proyectos.json'];
+const sources = ['index.html', ...fs.readdirSync('servicios').filter(x => x.endsWith('.html')).map(x => `servicios/${x}`), ...fs.readdirSync('js').filter(x => x.endsWith('.js') && x !== 'site-images.js').map(x => `js/${x}`), 'data/servicios.json', 'data/proyectos.json', 'data/site-content.json'];
 const imageRe = /(?:\.\.\/)*(?:Imagenes|img|img-remplaso|linea_de_tiempo|public\/proyectos)\/[^'"`<>\r\n)]+?\.(?:jpe?g|png|webp|avif|jfif)/giu;
 const inventory = new Map();
 function section(file, src) {

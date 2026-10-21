@@ -19,7 +19,7 @@ if (supabase) {
       if (!row || img.dataset.imageFailed === row.storage_path) return;
       if (img.src !== row.public_url) img.src = row.public_url;
       if (row.alt) img.alt = row.alt;
-      img.onerror = () => { img.dataset.imageFailed = row.storage_path; img.onerror = null; img.src = original; };
+      img.onerror = () => { img.dataset.imageFailed = row.storage_path; img.onerror = null; img.src = img.dataset.fallbackImage || original; };
     });
     document.querySelectorAll('[style*="--image"]').forEach((element) => {
       const style = element.getAttribute('style') || '';

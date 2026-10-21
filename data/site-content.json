@@ -1,0 +1,52 @@
+{
+  "hero": [
+    { "id": "inicio", "enabled": true, "eyebrow": "Compacto Urbano", "title": "Espacios para construir tu futuro", "text": "Inmobiliaria, interventoría y construcción.", "image": "/linea_de_tiempo/Conjunto Residencial Cataluña.jpg", "alt": "Conjunto Residencial Cataluña" },
+    { "id": "trayectoria", "enabled": true, "eyebrow": "Nuestra trayectoria", "title": "Experiencia que transforma entornos", "text": "Conoce los proyectos que forman parte de nuestro recorrido.", "image": "/linea_de_tiempo/Conjunto Residencial Américas.jpg", "alt": "Vista aérea del Conjunto Residencial Américas" },
+    { "id": "proyecto", "enabled": true, "eyebrow": "Trabajemos juntos", "title": "Tu próximo proyecto comienza aquí", "text": "Un equipo para acompañarte en cada etapa.", "image": "/linea_de_tiempo/Edificio Torre del Bosque Izquierdo.jpg", "alt": "Edificio Torre del Bosque Izquierdo" }
+  ],
+  "timeline": [
+    { "id": "sabana-grande", "year": "2012", "period": "2012 — 2013", "name": "Conjunto Sabana Grande Reservado 4", "type": "Residencial", "location": "Bogotá · Zona Franca", "image": "/linea_de_tiempo/Sabana Grande Reservado 4.jpg" },
+    { "id": "torre-bosque", "year": "2013", "period": "2013 — 2015", "name": "Edificio Torre del Bosque Izquierdo", "type": "Residencial", "location": "Bogotá · Bosque Izquierdo", "image": "/linea_de_tiempo/Edificio Torre del Bosque Izquierdo.jpg" },
+    { "id": "kasaury", "year": "2015", "period": "2015 — 2016", "name": "Edificio Kasaury", "type": "Residencial", "location": "Bogotá · Suba", "image": "/linea_de_tiempo/edificio kasaury.jpg" },
+    { "id": "casa-grande", "year": "2015", "period": "2015 — 2022", "name": "Conjunto Residencial Casa Grande", "type": "Residencial", "location": "Bogotá · Ciudad Bolívar", "image": "/linea_de_tiempo/Conjunto Residencial Casa Grande.jpg" },
+    { "id": "acanto", "year": "2017", "period": "2017", "name": "Conjunto Acanto", "type": "Residencial", "location": "Bogotá", "image": "/linea_de_tiempo/Conjunto Acanto.jpg" },
+    { "id": "yerbabuena", "year": "2017", "period": "2017", "name": "Edificio Yerbabuena", "type": "Residencial", "location": "Bogotá", "image": "/linea_de_tiempo/edificio yerbabuena.jpg" },
+    { "id": "cedro-golf", "year": "2017", "period": "2017", "name": "Conjunto Residencial Cedro Golf", "type": "Residencial", "location": "Bogotá · Usaquén", "image": "/linea_de_tiempo/Cedro Golf.jpg" },
+    { "id": "americas", "year": "2017", "period": "2017", "name": "Conjunto Residencial Américas", "type": "Residencial", "location": "Bogotá", "image": "/linea_de_tiempo/Conjunto Residencial Américas.jpg" },
+    { "id": "santa-lucia", "year": "2018", "period": "2018 — 2023", "name": "Parque Empresarial e Industrial Santa Lucía", "type": "Infraestructura", "location": "Bogotá", "image": "/linea_de_tiempo/Parque Empresarial e Industrial Santa Lucía-05 133536.jpg" },
+    { "id": "galias", "year": "2018", "period": "2018 — 2019", "name": "Conjunto Residencial Las Galias", "type": "Residencial", "location": "Bogotá · Engativá", "image": "/linea_de_tiempo/Conjunto Residencial Las Galias.jpg" },
+    { "id": "tempo", "year": "2020", "period": "2020 — 2024", "name": "Edificio Profesionales Tempo", "type": "Salud y oficinas", "location": "Bucaramanga · Sotomayor", "image": "/linea_de_tiempo/Edificio Profesionales Tempo.jpg" },
+    { "id": "akanra", "year": "2022", "period": "2022 — 2023", "name": "Conjunto Residencial Akanra", "type": "Residencial", "location": "Colombia", "image": "/linea_de_tiempo/Conjunto Residencial Akanra.jpg" },
+    { "id": "tierra-firme", "year": "2023", "period": "2023 — 2024", "name": "Edificio Tierra Firme", "type": "Corporativo", "location": "Bogotá · Usaquén", "image": "/linea_de_tiempo/Edificio Tierra Firme.jpg" },
+    { "id": "cataluna", "year": "2023", "period": "2023 — 2024", "name": "Conjunto Residencial Cataluña", "type": "Residencial", "location": "Bogotá · Engativá", "image": "/linea_de_tiempo/Conjunto Residencial Cataluña.jpg" }
+  ],
+  "services": {
+    "inmobiliaria": { "kicker": "Gestión inmobiliaria", "title": "Inmobiliaria", "description": "Arriendos, compra, venta y avalúos de inmuebles", "gallery": [
+      { "image": "/Imagenes/1. INMOBILIARIA/se-arrienda-compactourbano-inmobiliaria-bogota-colombia-inmueble-arriendo-compactourbano-cortes&useche.png", "alt": "Inmueble en arriendo" },
+      { "image": "/Imagenes/1. INMOBILIARIA/se-vende-inmobiliaria-compactourbano-cortes&useches-vivienda.png", "alt": "Inmueble en venta" },
+      { "image": "/Imagenes/1. INMOBILIARIA/2. Arriendo-venta de Apartamentos-casas-vivienda-campestre-inmobiliaria-compactourbano-cortes&useche.jpg", "alt": "Asesoría inmobiliaria" },
+      { "image": "/Imagenes/1. INMOBILIARIA/1. venta-Arriendo-venta de Apartamentos-casas-vivienda-campestre-inmobiliaria-compactourbano.jpg", "alt": "Vivienda disponible para compra o arriendo" },
+      { "image": "/Imagenes/1. INMOBILIARIA/3. casa-Arriendo-venta de Apartamentos-casas-vivienda-campestre-inmobiliaria-compactourbano.jpg", "alt": "Casa campestre" },
+      { "image": "/Imagenes/1. INMOBILIARIA/4. inmobiliaria-compactourbano-valores-compactourbano-cortes&useche.jpg", "alt": "Acompañamiento inmobiliario" }
+    ] },
+    "interventoria": { "kicker": "Control técnico", "title": "Interventoría", "description": "Consultoría, interventoría y dirección de proyectos de infraestructura civil y arquitectónica", "gallery": [
+      { "image": "/Imagenes/2. INTERVENTORIA/DIRECCION DE OBRA-COMPACTO URBANO.jpg", "alt": "Dirección de obra" },
+      { "image": "/Imagenes/2. INTERVENTORIA/OBRA CIVIL - COMPACTO URBANO.jpg", "alt": "Supervisión de obra civil" },
+      { "image": "/Imagenes/2. INTERVENTORIA/SEGURIDAD TRANQUILIDAD COSNTRUCCION - COMPACTO URBANO.jpg", "alt": "Seguridad y control en construcción" },
+      { "image": "/Imagenes/2. INTERVENTORIA/INTERVENTORIA - COMPACTO URBANO.jpg", "alt": "Interventoría de obra" },
+      { "image": "/Imagenes/2. INTERVENTORIA/planeacion-obra-diseño-control-compactourbano-diseño-soldadura-pernos.jpg", "alt": "Planeación y control de obra" },
+      { "image": "/Imagenes/2. INTERVENTORIA/SUPERVISION DE OBRA - COMPACTO URBANO.jpg", "alt": "Supervisión de obra" },
+      { "image": "/Imagenes/2. INTERVENTORIA/ESTRUCTURA - COMPACTO URBANO.jpg", "alt": "Estructura supervisada" }
+    ] },
+    "construccion": { "kicker": "Ejecución integral", "title": "Construcción de vivienda y obras civiles", "description": "Vivienda campestre, hoteles, bodegas industriales, locales comerciales y oficinas", "gallery": [
+      { "image": "/Imagenes/3. CONSTRUCCION/FACHaDA FLOTANTE-pergola-construccion-campestres-porteria de acceso-conjuntoresidencial-ESTRUCTURA-METALICA-CONEXION-compactourbano-diseño-soldadura-.jpg", "alt": "Fachada flotante construida por Compacto Urbano" },
+      { "image": "/Imagenes/3. CONSTRUCCION/FACHaDA FLOTANTE-pergola-construccion-campestres-porteria de acceso-conjuntoresidencial-ESTRUCTURA-METALICA-CONEXION-compactourbano-diseño-soldadura-pernos.png", "alt": "Fachada arquitectónica terminada" },
+      { "image": "/Imagenes/3. CONSTRUCCION/SALON - COLISEO - COMPACTO URBANO.jpg", "alt": "Coliseo terminado" },
+      { "image": "/Imagenes/3. CONSTRUCCION/ESTRUCTURA METALICA - COMPACTO URBANO-CONEXION-compactourbano-diseño-.jpg", "alt": "Estructura metálica" },
+      { "image": "/Imagenes/3. CONSTRUCCION/FACHaDA FLOTANTE-pergola-construccion-conjuntoresidencial-ESTRUCTURA-METALICA-CONEXION-compactourbano-diseño-soldadura-pernos.jpg", "alt": "Construcción de fachada" },
+      { "image": "/Imagenes/3. CONSTRUCCION/FACHaDA FLOTANTE-pergola-construccion-campestres-porteria de acceso-conjuntoresidencialESTRUCTURA-METALICA-CONEXION-compactourbano-diseño-soldadura-pernos.jpg", "alt": "Portería de acceso" },
+      { "image": "/Imagenes/3. CONSTRUCCION/FACHaDA FLOTANTE-pergola-construccion-campestres-porteria de acceso-conjuntoresidencial-ESTRUCTURA-METALICA-CONEXION-compactourbano-diseño-soldadura-pernos.jfif", "alt": "Detalle de fachada" }
+    ] }
+  },
+  "contact": { "address": "Carrera 16 A #78-75, Bogotá", "email": "compactou@gmail.com", "phone": "+57 315 559 7866", "whatsapp": "573155597866", "whatsappMessage": "Hola, quiero hablar sobre un proyecto con Compacto Urbano.", "heading": "Convirtamos tu idea en un espacio para vivir mejor.", "text": "Cuéntanos qué necesitas. Nuestro equipo te orientará de forma cercana y profesional." }
+}
