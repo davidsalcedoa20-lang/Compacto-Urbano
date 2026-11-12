@@ -77,7 +77,7 @@ main img.image-expandable:focus-visible { outline:3px solid #58a9df; outline-off
 .image-lightbox-close:focus-visible { outline:3px solid #1263a3; outline-offset:2px; }
 
 /* The individual service pages use the same two-family, two-size type system. */
-.page-servicio { font-family:Arial,Helvetica,sans-serif; font-size:16px; }
+.page-servicio { font-family:var(--site-body-font,Arial,Helvetica,sans-serif); font-size:16px; }
 .page-servicio * { font-family:inherit!important; font-size:inherit!important; text-transform:none!important; }
-.page-servicio :is(h1,h2,h3) { font-family:Georgia,serif!important; font-size:32px!important; line-height:1.2; }
+.page-servicio :is(h1,h2,h3) { font-family:var(--site-heading-font,Georgia,serif)!important; font-size:32px!important; line-height:1.2; }
 .page-servicio :is(h1,h2,h3) * { font-family:inherit!important; }
