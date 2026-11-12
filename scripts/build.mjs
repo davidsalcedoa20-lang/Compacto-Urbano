@@ -18,3 +18,4 @@ await build({ entryPoints: ['admin/admin.js'], outfile: 'dist/admin/admin.bundle
 await build({ entryPoints: ['js/site-images.js'], outfile: 'dist/js/site-images.bundle.js', bundle: true, minify: true, format: 'iife', target: 'es2020', define });
 await build({ entryPoints: ['js/site-content.js'], outfile: 'dist/js/site-content.bundle.js', bundle: true, minify: true, format: 'iife', target: 'es2020', define });
 await build({ entryPoints: ['js/contact-sync.js'], outfile: 'dist/js/contact-sync.bundle.js', bundle: true, minify: true, format: 'iife', target: 'es2020', define });
+await build({ entryPoints: ['js/presentation.js'], outfile: 'dist/js/presentation.bundle.js', bundle: true, minify: true, format: 'iife', target: 'es2020', define });

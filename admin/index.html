@@ -18,6 +18,7 @@
         <button data-view="hero">Carrusel principal</button>
         <button data-view="services">Servicios</button>
         <button data-view="contact">Contacto</button>
+        <button data-view="presentation">Textos y tipografía</button>
         <button data-view="history">Historial</button>
         <button data-view="settings">Ajustes</button>
       </nav>
@@ -54,6 +55,14 @@
         <p class="view-intro">Estos datos actualizan la información visible, el enlace de WhatsApp y el mapa.</p>
         <div id="contact-editor" class="content-list"></div>
         <div class="content-actions"><button data-publish="contact" type="button" disabled>Publicar contacto</button></div>
+      </section>
+
+      <section id="presentation-view" hidden>
+        <p class="view-intro">Edita las frases de la página de inicio y de las páginas de servicios. Los textos de proyectos, carrusel, servicios y contacto también tienen sus editores específicos arriba.</p>
+        <div id="typography-editor" class="content-card"></div>
+        <div class="toolbar presentation-toolbar"><label>Buscar texto<input id="presentation-search" type="search" placeholder="Escribe una palabra o sección"></label><label>Página<select id="presentation-page"><option value="">Todas las páginas</option></select></label></div>
+        <div id="presentation-editor" class="content-list"></div>
+        <div class="content-actions"><button data-publish="presentation" type="button" disabled>Publicar textos y tipografía</button></div>
       </section>
 
       <section id="history-view" hidden><div id="history-list"></div></section>

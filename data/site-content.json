@@ -48,5 +48,6 @@
       { "image": "/Imagenes/3. CONSTRUCCION/FACHaDA FLOTANTE-pergola-construccion-campestres-porteria de acceso-conjuntoresidencial-ESTRUCTURA-METALICA-CONEXION-compactourbano-diseño-soldadura-pernos.jfif", "alt": "Detalle de fachada" }
     ] }
   },
-  "contact": { "address": "Carrera 16 A #78-75, Bogotá", "email": "compactou@gmail.com", "phone": "+57 315 559 7866", "whatsapp": "573155597866", "whatsappMessage": "Hola, quiero hablar sobre un proyecto con Compacto Urbano.", "heading": "Convirtamos tu idea en un espacio para vivir mejor.", "text": "Cuéntanos qué necesitas. Nuestro equipo te orientará de forma cercana y profesional." }
+  "contact": { "address": "Carrera 16 A #78-75, Bogotá", "email": "compactou@gmail.com", "phone": "+57 315 559 7866", "whatsapp": "573155597866", "whatsappMessage": "Hola, quiero hablar sobre un proyecto con Compacto Urbano.", "heading": "Convirtamos tu idea en un espacio para vivir mejor.", "text": "Cuéntanos qué necesitas. Nuestro equipo te orientará de forma cercana y profesional." },
+  "presentation": { "bodyFont": "arial", "headingFont": "georgia", "overrides": {} }
 }

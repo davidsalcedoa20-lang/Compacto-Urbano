@@ -13,6 +13,10 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
   const { data: saved, error } = await supabase.from('site_content').select('content_key,document');
   if (error) notify(`No fue posible cargar el contenido: ${error.message}`);
   else for (const row of saved || []) if (Object.hasOwn(state, row.content_key) && row.document) state[row.content_key] = row.document;
+  state.presentation = { ...defaults.presentation, ...(state.contact?.presentation || {}), overrides: { ...(state.contact?.presentation?.overrides || {}) } };
+  let textCatalog = [];
+  try { textCatalog = await fetch('/data/text-catalog.json').then(response => response.json()); }
+  catch { notify('No fue posible cargar el catálogo de textos.'); }
 
   const previewUrl = path => imageState.published.get(path)?.public_url || path || '';
   const picker = (item, attrs) => {
@@ -53,6 +57,55 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
     const attrs = 'data-section="contact" data-index="0"';
     $('#contact-editor').innerHTML = `<article class="content-card"><h2>Datos de contacto</h2><div class="content-fields">${textField('Dirección', 'address', contact.address, attrs)}${textField('Correo electrónico', 'email', contact.email, attrs, { type: 'email' })}${textField('Teléfono visible', 'phone', contact.phone, attrs)}${textField('WhatsApp con indicativo, solo números', 'whatsapp', contact.whatsapp, attrs)}${areaField('Mensaje inicial de WhatsApp', 'whatsappMessage', contact.whatsappMessage, attrs)}${textField('Título de la llamada a la acción', 'heading', contact.heading, attrs, { max: 140 })}${areaField('Texto de la llamada a la acción', 'text', contact.text, attrs)}</div></article>`;
   }
+
+  const fonts = { arial: ['Arial', 'Arial, Helvetica, sans-serif'], trebuchet: ['Trebuchet MS', '"Trebuchet MS", Arial, sans-serif'], georgia: ['Georgia', 'Georgia, serif'], verdana: ['Verdana', 'Verdana, Geneva, sans-serif'] };
+  const fontOptions = selected => Object.entries(fonts).map(([key, [label]]) => `<option value="${key}" ${key === selected ? 'selected' : ''}>${label}</option>`).join('');
+  function renderTypography() {
+    $('#typography-editor').innerHTML = `<h2>Tipografía de toda la página</h2><div class="content-fields"><label>Texto general<select data-font="bodyFont">${fontOptions(state.presentation.bodyFont)}</select></label><label>Títulos<select data-font="headingFont">${fontOptions(state.presentation.headingFont)}</select></label></div><p class="type-preview">Así se verá el texto de la página</p><h3 class="type-preview-heading">Así se verán los títulos</h3>`;
+    $('#typography-editor .type-preview').style.fontFamily = fonts[state.presentation.bodyFont]?.[1] || fonts.arial[1];
+    $('#typography-editor .type-preview-heading').style.fontFamily = fonts[state.presentation.headingFont]?.[1] || fonts.georgia[1];
+  }
+  function renderPresentation() {
+    const page = $('#presentation-page').value;
+    const query = $('#presentation-search').value.toLocaleLowerCase('es');
+    const rows = textCatalog.map((entry, index) => ({ ...entry, index })).filter(entry => {
+      const locations = entry.locations.join(' ');
+      return (!page || entry.locations.some(location => location.startsWith(page + ' ·'))) && (!query || `${entry.text} ${locations}`.toLocaleLowerCase('es').includes(query));
+    });
+    $('#presentation-editor').innerHTML = rows.map(entry => {
+      const override = state.presentation.overrides[entry.text] || '';
+      return `<article class="content-card presentation-row"><div class="presentation-row-head"><span class="chip">${escapeHtml(entry.locations.join(' · '))}</span><button type="button" class="secondary" data-reset-text="${entry.index}" ${override ? '' : 'disabled'}>Restaurar texto</button></div><label>Texto actual<small>${escapeHtml(entry.text)}</small><textarea data-copy-index="${entry.index}" maxlength="1200" placeholder="Escribe aquí para cambiarlo">${escapeHtml(override)}</textarea></label></article>`;
+    }).join('') || '<p>No se encontraron textos para este filtro.</p>';
+  }
+  renderTypography();
+  const pages = [...new Set(textCatalog.flatMap(entry => entry.locations.map(location => location.split(' · ')[0])))];
+  $('#presentation-page').innerHTML += pages.map(page => `<option value="${escapeHtml(page)}">${escapeHtml(page)}</option>`).join('');
+  renderPresentation();
+  $('#presentation-page').addEventListener('change', renderPresentation);
+  $('#presentation-search').addEventListener('input', renderPresentation);
+  $('#typography-editor').addEventListener('change', event => {
+    const field = event.target.dataset.font;
+    if (!field || !fonts[event.target.value]) return;
+    state.presentation[field] = event.target.value;
+    renderTypography();
+  });
+  $('#presentation-editor').addEventListener('input', event => {
+    const index = Number(event.target.dataset.copyIndex);
+    if (!Number.isInteger(index) || !textCatalog[index]) return;
+    const original = textCatalog[index].text;
+    if (event.target.value.trim()) state.presentation.overrides[original] = event.target.value;
+    else delete state.presentation.overrides[original];
+    event.target.closest('.presentation-row').querySelector('[data-reset-text]').disabled = !event.target.value.trim();
+  });
+  $('#presentation-editor').addEventListener('click', event => {
+    const button = event.target.closest('[data-reset-text]');
+    if (!button) return;
+    const original = textCatalog[Number(button.dataset.resetText)]?.text;
+    if (!original) return;
+    delete state.presentation.overrides[original];
+    button.closest('.presentation-row').querySelector('textarea').value = '';
+    button.disabled = true;
+  });
 
   const renderers = { hero: renderHero, timeline: renderTimeline, services: renderServices, contact: renderContact };
   Object.values(renderers).forEach(render => render());
@@ -145,6 +198,10 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
   }
 
   function validate(key) {
+    if (key === 'presentation') {
+      if (!fonts[state.presentation.bodyFont] || !fonts[state.presentation.headingFont]) return 'Elige tipografías válidas.';
+      if (Object.entries(state.presentation.overrides).some(([original, value]) => !textCatalog.some(entry => entry.text === original) || typeof value !== 'string' || value.trim().length > 1200)) return 'Revisa los textos editados.';
+    }
     if (key === 'hero') {
       if (!state.hero.length || !state.hero.some(item => item.enabled !== false)) return 'Deja al menos una diapositiva activa.';
       if (state.hero.some(item => !item.title?.trim() || !item.image || !item.alt?.trim())) return 'Completa título, fotografía y texto alternativo de cada diapositiva.';
@@ -171,9 +228,11 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
     notify('Publicando cambios…');
     try {
       const { data: { user } } = await supabase.auth.getUser();
-      const { error: saveError } = await supabase.from('site_content').upsert({ content_key: key, document: state[key], updated_by: user.id, updated_at: new Date().toISOString() });
+      if (key === 'presentation') state.contact.presentation = clone(state.presentation);
+      const storageKey = key === 'presentation' ? 'contact' : key;
+      const { error: saveError } = await supabase.from('site_content').upsert({ content_key: storageKey, document: state[storageKey], updated_by: user.id, updated_at: new Date().toISOString() });
       if (saveError) throw saveError;
-      notify(`${({ hero: 'Carrusel', timeline: 'Línea de tiempo', services: 'Servicios', contact: 'Contacto' })[key]} publicado. Recarga la página pública para ver los cambios.`);
+      notify(`${({ hero: 'Carrusel', timeline: 'Línea de tiempo', services: 'Servicios', contact: 'Contacto', presentation: 'Textos y tipografía' })[key]} publicado. Recarga la página pública para ver los cambios.`);
     } catch (error) { notify(`No fue posible publicar: ${error.message}`); }
     finally { button.disabled = false; }
   }));
@@ -182,7 +241,7 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
     async history() {
       const { data, error: historyError } = await supabase.from('content_changes').select('content_key,changed_at').order('changed_at', { ascending: false }).limit(100);
       if (historyError) throw historyError;
-      return (data || []).map(row => ({ label: 'Contenido publicado', detail: ({ hero: 'Carrusel principal', timeline: 'Línea de tiempo', services: 'Servicios', contact: 'Contacto' })[row.content_key] || row.content_key, changed_at: row.changed_at }));
+      return (data || []).map(row => ({ label: 'Contenido publicado', detail: ({ hero: 'Carrusel principal', timeline: 'Línea de tiempo', services: 'Servicios', contact: 'Contacto', presentation: 'Textos y tipografía' })[row.content_key] || row.content_key, changed_at: row.changed_at }));
     }
   };
 }
