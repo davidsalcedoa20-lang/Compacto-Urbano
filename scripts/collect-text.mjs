@@ -16,7 +16,7 @@ try {
       while (walker.nextNode()) {
         const node = walker.currentNode;
         const value = node.nodeValue.trim();
-        if (!value || node.parentElement?.closest('script,style,svg,noscript,[hidden],.hero-controls,.timeline-years,.timeline-controls,.timeline-arrow,.dots,.mini-gallery-arrow,.image-lightbox')) continue;
+        if (!value || node.parentElement?.closest('script,style,svg,noscript,.hero-controls,.timeline-years,.timeline-arrow,.dots,.mini-gallery-arrow,.image-lightbox')) continue;
         if (/^[\d\s/—↔‹›+·©]+$/.test(value)) continue;
         const section = node.parentElement?.closest('main section');
         entries.push({ text: value, section: section?.id || section?.classList[0] || 'Encabezado y pie' });
