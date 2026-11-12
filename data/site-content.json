@@ -49,5 +49,11 @@
     ] }
   },
   "contact": { "address": "Carrera 16 A #78-75, Bogotá", "email": "compactou@gmail.com", "phone": "+57 315 559 7866", "whatsapp": "573155597866", "whatsappMessage": "Hola, quiero hablar sobre un proyecto con Compacto Urbano.", "heading": "Convirtamos tu idea en un espacio para vivir mejor.", "text": "Cuéntanos qué necesitas. Nuestro equipo te orientará de forma cercana y profesional." },
-  "presentation": { "bodyFont": "arial", "headingFont": "georgia", "overrides": {} }
+  "presentation": { "bodyFont": "arial", "headingFont": "georgia", "overrides": {} },
+  "seo": {
+    "home": { "title": "Compacto Urbano | Inmobiliaria, interventoría y construcción", "description": "Compacto Urbano acompaña proyectos inmobiliarios, de interventoría y construcción de vivienda y obras civiles en Colombia.", "indexable": true },
+    "inmobiliaria": { "title": "Gestión inmobiliaria | Compacto Urbano", "description": "Acompañamiento en arriendo, compra, venta y avalúo de inmuebles. Gestión inmobiliaria enfocada en proteger el valor de su patrimonio.", "indexable": true },
+    "interventoria": { "title": "Interventoría | Compacto Urbano", "description": "Consultoría, interventoría y dirección de proyectos de infraestructura civil y arquitectónica con seguimiento técnico y administrativo.", "indexable": true },
+    "propiedad_horizontal": { "title": "Propiedad horizontal | Compacto Urbano", "description": "Administración de copropiedades y edificios orientada a preservar y potenciar el patrimonio colectivo.", "indexable": true }
+  }
 }

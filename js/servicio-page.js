@@ -265,9 +265,11 @@
             const svc = map[serviceId];
             if (!svc) throw new Error(`Servicio no encontrado: ${serviceId}`);
 
-            document.title = svc.metaTitle;
-            const meta = document.querySelector('meta[name="description"]');
-            if (meta) meta.setAttribute("content", svc.metaDescription);
+            if (document.documentElement.dataset.seoManaged !== 'true') {
+                document.title = svc.metaTitle;
+                const meta = document.querySelector('meta[name="description"]');
+                if (meta) meta.setAttribute("content", svc.metaDescription);
+            }
 
             renderHero(svc);
             renderIntro(svc);

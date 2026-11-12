@@ -19,6 +19,7 @@
         <button data-view="services">Servicios</button>
         <button data-view="contact">Contacto</button>
         <button data-view="presentation">Textos y tipografía</button>
+        <button data-view="seo">SEO de Google</button>
         <button data-view="history">Historial</button>
         <button data-view="settings">Ajustes</button>
       </nav>
@@ -63,6 +64,12 @@
         <div class="toolbar presentation-toolbar"><label>Buscar texto<input id="presentation-search" type="search" placeholder="Escribe una palabra o sección"></label><label>Página<select id="presentation-page"><option value="">Todas las páginas</option></select></label></div>
         <div id="presentation-editor" class="content-list"></div>
         <div class="content-actions"><button data-publish="presentation" type="button" disabled>Publicar textos y tipografía</button></div>
+      </section>
+
+      <section id="seo-view" hidden>
+        <p class="view-intro">Edita cómo se presentan las páginas en los resultados de búsqueda. Google puede adaptar el título y el resumen que muestra. Los cambios en el HTML pueden tardar hasta unos minutos en propagarse; la actualización de Google depende de su próximo rastreo.</p>
+        <div id="seo-editor" class="content-list"></div>
+        <div class="content-actions"><button data-publish="seo" type="button" disabled>Publicar SEO</button></div>
       </section>
 
       <section id="history-view" hidden><div id="history-list"></div></section>

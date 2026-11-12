@@ -157,8 +157,8 @@ if (loginPage) {
   $('#restore-image').addEventListener('click', restore);
   document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('[data-view]').forEach(item => item.classList.toggle('active', item === button));
-    for (const view of ['images', 'timeline', 'hero', 'services', 'contact', 'presentation', 'history', 'settings']) $(`#${view}-view`).hidden = button.dataset.view !== view;
-    $('#view-title').textContent = ({ images: 'Imágenes de la página', timeline: 'Línea de tiempo', hero: 'Carrusel principal', services: 'Servicios', contact: 'Contacto', presentation: 'Textos y tipografía', history: 'Historial de cambios', settings: 'Ajustes de la cuenta' })[button.dataset.view];
+    for (const view of ['images', 'timeline', 'hero', 'services', 'contact', 'presentation', 'seo', 'history', 'settings']) $(`#${view}-view`).hidden = button.dataset.view !== view;
+    $('#view-title').textContent = ({ images: 'Imágenes de la página', timeline: 'Línea de tiempo', hero: 'Carrusel principal', services: 'Servicios', contact: 'Contacto', presentation: 'Textos y tipografía', seo: 'SEO de Google', history: 'Historial de cambios', settings: 'Ajustes de la cuenta' })[button.dataset.view];
     if (button.dataset.view === 'history') showHistory();
   }));
   $('#signout').addEventListener('click', async () => { await supabase.auth.signOut({ scope: 'global' }); location.replace('/admin/login'); });

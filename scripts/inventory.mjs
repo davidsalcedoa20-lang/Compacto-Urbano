@@ -42,6 +42,6 @@ const rows = [...inventory.values()].sort((a, b) => a.section.localeCompare(b.se
 const destination = path.join(root, 'data', 'image-inventory.json');
 const output = JSON.stringify(rows, null, 2) + '\n';
 if (process.argv.includes('--check')) {
-  if (!fs.existsSync(destination) || fs.readFileSync(destination, 'utf8') !== output) { console.error('El inventario necesita actualizarse'); process.exit(1); }
+  if (!fs.existsSync(destination) || fs.readFileSync(destination, 'utf8').replace(/\r\n/g, '\n') !== output) { console.error('El inventario necesita actualizarse'); process.exit(1); }
 } else fs.writeFileSync(destination, output);
 console.log(`${rows.length} imágenes únicas en el inventario`);
