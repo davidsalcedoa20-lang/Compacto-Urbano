@@ -14,6 +14,7 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
   if (error) notify(`No fue posible cargar el contenido: ${error.message}`);
   else for (const row of saved || []) if (Object.hasOwn(state, row.content_key) && row.document) state[row.content_key] = row.document;
   state.presentation = { ...defaults.presentation, ...(state.contact?.presentation || {}), overrides: { ...(state.contact?.presentation?.overrides || {}) } };
+  state.seo = Object.fromEntries(Object.entries(defaults.seo).map(([key, page]) => [key, { ...page, ...(state.contact?.seo?.[key] || {}) }]));
   let textCatalog = [];
   try { textCatalog = await fetch('/data/text-catalog.json').then(response => response.json()); }
   catch { notify('No fue posible cargar el catálogo de textos.'); }
@@ -107,6 +108,29 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
     button.disabled = true;
   });
 
+  const seoPages = { home: ['Inicio', '/'], inmobiliaria: ['Gestión inmobiliaria', '/servicios/inmobiliaria.html'], interventoria: ['Interventoría', '/servicios/interventoria.html'], propiedad_horizontal: ['Propiedad horizontal', '/servicios/propiedad_horizontal.html'] };
+  function renderSeo() {
+    $('#seo-editor').innerHTML = Object.entries(seoPages).map(([key, [label, path]]) => {
+      const page = state.seo[key];
+      return `<article class="content-card seo-card"><h2>${escapeHtml(label)}</h2><p class="seo-path">compactourbano.com${escapeHtml(path)}</p><div class="content-fields"><label>Título para Google<input data-seo-page="${key}" data-seo-field="title" value="${escapeHtml(page.title)}" maxlength="120" required><small>Procura que sea claro y específico. ${page.title.length}/120 caracteres.</small></label><label>Descripción para Google<textarea data-seo-page="${key}" data-seo-field="description" maxlength="320" required>${escapeHtml(page.description)}</textarea><small>Resume el contenido real de esta página. ${page.description.length}/320 caracteres.</small></label></div><label class="toggle-label"><input type="checkbox" data-seo-page="${key}" data-seo-field="indexable" ${page.indexable !== false ? 'checked' : ''}> Permitir que Google indexe esta página</label><div class="seo-preview" aria-label="Vista previa aproximada del resultado"><small>Vista previa aproximada</small><span class="seo-preview-url">compactourbano.com${escapeHtml(path)}</span><strong class="seo-preview-title">${escapeHtml(page.title)}</strong><p class="seo-preview-description">${escapeHtml(page.description)}</p></div></article>`;
+    }).join('');
+  }
+  renderSeo();
+  function updateSeo(event) {
+    const input = event.target.closest('[data-seo-field]');
+    if (!input) return;
+    const page = state.seo[input.dataset.seoPage];
+    if (!page) return;
+    page[input.dataset.seoField] = input.type === 'checkbox' ? input.checked : input.value;
+    const card = input.closest('.seo-card');
+    card.querySelector('.seo-preview-title').textContent = page.title;
+    card.querySelector('.seo-preview-description').textContent = page.description;
+    const counter = input.parentElement.querySelector('small');
+    if (counter && input.type !== 'checkbox') counter.textContent = `${input.value.length}/${input.maxLength} caracteres.`;
+  }
+  $('#seo-editor').addEventListener('input', updateSeo);
+  $('#seo-editor').addEventListener('change', updateSeo);
+
   const renderers = { hero: renderHero, timeline: renderTimeline, services: renderServices, contact: renderContact };
   Object.values(renderers).forEach(render => render());
   document.querySelectorAll('#hero-add,#timeline-add,[data-publish]').forEach(button => { button.disabled = false; });
@@ -198,6 +222,7 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
   }
 
   function validate(key) {
+    if (key === 'seo' && Object.values(state.seo).some(page => !page.title?.trim() || page.title.length > 120 || !page.description?.trim() || page.description.length > 320 || typeof page.indexable !== 'boolean')) return 'Completa el título y la descripción de las cuatro páginas.';
     if (key === 'presentation') {
       if (!fonts[state.presentation.bodyFont] || !fonts[state.presentation.headingFont]) return 'Elige tipografías válidas.';
       if (Object.entries(state.presentation.overrides).some(([original, value]) => !textCatalog.some(entry => entry.text === original) || typeof value !== 'string' || value.trim().length > 1200)) return 'Revisa los textos editados.';
@@ -229,19 +254,25 @@ export async function initContentEditor({ supabase, imageState, refreshImages, n
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (key === 'presentation') state.contact.presentation = clone(state.presentation);
-      const storageKey = key === 'presentation' ? 'contact' : key;
+      if (key === 'seo') state.contact.seo = clone(state.seo);
+      const storageKey = key === 'presentation' || key === 'seo' ? 'contact' : key;
       const { error: saveError } = await supabase.from('site_content').upsert({ content_key: storageKey, document: state[storageKey], updated_by: user.id, updated_at: new Date().toISOString() });
       if (saveError) throw saveError;
-      notify(`${({ hero: 'Carrusel', timeline: 'Línea de tiempo', services: 'Servicios', contact: 'Contacto', presentation: 'Textos y tipografía' })[key]} publicado. Recarga la página pública para ver los cambios.`);
+      notify(`${({ hero: 'Carrusel', timeline: 'Línea de tiempo', services: 'Servicios', contact: 'Contacto', presentation: 'Textos y tipografía', seo: 'SEO' })[key]} publicado. Los cambios en Google dependerán de su próximo rastreo.`);
     } catch (error) { notify(`No fue posible publicar: ${error.message}`); }
     finally { button.disabled = false; }
   }));
 
   return {
     async history() {
-      const { data, error: historyError } = await supabase.from('content_changes').select('content_key,changed_at').order('changed_at', { ascending: false }).limit(100);
+      const { data, error: historyError } = await supabase.from('content_changes').select('content_key,changed_at,previous_document,new_document').order('changed_at', { ascending: false }).limit(100);
       if (historyError) throw historyError;
-      return (data || []).map(row => ({ label: 'Contenido publicado', detail: ({ hero: 'Carrusel principal', timeline: 'Línea de tiempo', services: 'Servicios', contact: 'Contacto', presentation: 'Textos y tipografía' })[row.content_key] || row.content_key, changed_at: row.changed_at }));
+      return (data || []).map(row => {
+        let detail = ({ hero: 'Carrusel principal', timeline: 'Línea de tiempo', services: 'Servicios', contact: 'Contacto' })[row.content_key] || row.content_key;
+        if (row.content_key === 'contact' && JSON.stringify(row.previous_document?.seo) !== JSON.stringify(row.new_document?.seo)) detail = 'SEO de Google';
+        else if (row.content_key === 'contact' && JSON.stringify(row.previous_document?.presentation) !== JSON.stringify(row.new_document?.presentation)) detail = 'Textos y tipografía';
+        return { label: 'Contenido publicado', detail, changed_at: row.changed_at };
+      });
     }
   };
 }

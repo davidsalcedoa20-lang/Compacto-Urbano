@@ -1,8 +1,14 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/admin", "destination": "/admin/index.html" },
-    { "source": "/admin/login", "destination": "/admin/login.html" }
+  "routes": [
+    { "src": "^/$", "dest": "/api/seo?slug=home" },
+    { "src": "^/index\\.html$", "dest": "/api/seo?slug=home" },
+    { "src": "^/servicios/inmobiliaria\\.html$", "dest": "/api/seo?slug=inmobiliaria" },
+    { "src": "^/servicios/interventoria\\.html$", "dest": "/api/seo?slug=interventoria" },
+    { "src": "^/servicios/propiedad_horizontal\\.html$", "dest": "/api/seo?slug=propiedad_horizontal" },
+    { "handle": "filesystem" },
+    { "src": "^/admin/?$", "dest": "/admin/index.html" },
+    { "src": "^/admin/login/?$", "dest": "/admin/login.html" }
   ]
 }

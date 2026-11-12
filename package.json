@@ -5,14 +5,16 @@
   "scripts": {
     "inventory": "node scripts/inventory.mjs",
     "build": "node scripts/inventory.mjs && node scripts/build.mjs",
-    "check": "node scripts/inventory.mjs --check && node --check js/site-images.js && node --check js/site-content.js && node --check js/contact-sync.js && node --check js/presentation.js && node --check js/guia.js && node --check js/gallery.js && node --check admin/admin.js && node --check admin/content-editor.js && node --check scripts/bootstrap-admin.mjs && node --check scripts/smoke-admin.mjs && node --check scripts/smoke-browser.mjs && node --check scripts/smoke-content.mjs && node --check scripts/smoke-presentation.mjs && node --check scripts/smoke-admin-presentation.mjs",
+    "check": "node scripts/inventory.mjs --check && node --check api/seo.js && node --check js/site-images.js && node --check js/site-content.js && node --check js/contact-sync.js && node --check js/presentation.js && node --check js/guia.js && node --check js/gallery.js && node --check admin/admin.js && node --check admin/content-editor.js && node --check scripts/bootstrap-admin.mjs && node --check scripts/smoke-admin.mjs && node --check scripts/smoke-browser.mjs && node --check scripts/smoke-content.mjs && node --check scripts/smoke-presentation.mjs && node --check scripts/smoke-admin-presentation.mjs && node --check scripts/smoke-seo.mjs && node --check scripts/smoke-admin-seo.mjs",
     "bootstrap-admin": "node scripts/bootstrap-admin.mjs",
     "smoke-admin": "node scripts/smoke-admin.mjs",
     "smoke-browser": "node scripts/smoke-browser.mjs",
     "smoke-content": "node scripts/smoke-content.mjs",
     "smoke-service-contact": "node scripts/smoke-service-contact.mjs",
     "smoke-presentation": "node scripts/smoke-presentation.mjs",
-    "smoke-admin-presentation": "node scripts/smoke-admin-presentation.mjs"
+    "smoke-admin-presentation": "node scripts/smoke-admin-presentation.mjs",
+    "smoke-seo": "node scripts/smoke-seo.mjs",
+    "smoke-admin-seo": "node scripts/smoke-admin-seo.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.75.0"

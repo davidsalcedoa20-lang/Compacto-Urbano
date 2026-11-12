@@ -6,6 +6,14 @@ const root = process.cwd();
 const dist = path.join(root, 'dist');
 fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist);
+const seoTemplates = {
+  home: fs.readFileSync('index.html', 'utf8'),
+  inmobiliaria: fs.readFileSync('servicios/inmobiliaria.html', 'utf8'),
+  interventoria: fs.readFileSync('servicios/interventoria.html', 'utf8'),
+  propiedad_horizontal: fs.readFileSync('servicios/propiedad_horizontal.html', 'utf8')
+};
+fs.mkdirSync('api', { recursive: true });
+fs.writeFileSync('api/seo-templates.json', JSON.stringify(seoTemplates));
 for (const item of ['index.html', 'admin', 'css', 'js', 'data', 'img', 'img-remplaso', 'Imagenes', 'linea_de_tiempo', 'servicios', 'logo_nexa']) {
   if (fs.existsSync(item)) fs.cpSync(item, path.join(dist, item), { recursive: true });
 }
