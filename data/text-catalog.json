@@ -69,7 +69,10 @@
   {
     "text": "Hablemos de tu proyecto",
     "locations": [
-      "Inicio · contacto"
+      "Inicio · contacto",
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
     ]
   },
   {
@@ -147,8 +150,11 @@
       "Inicio · Encabezado y pie",
       "Inicio · servicios",
       "Inicio · interventoria",
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
       "Interventoría · svc-hero",
-      "Interventoría · que-es"
+      "Interventoría · que-es",
+      "Propiedad horizontal · Encabezado y pie"
     ]
   },
   {
@@ -389,6 +395,12 @@
     ]
   },
   {
+    "text": "↔  Arrastra para explorar",
+    "locations": [
+      "Inicio · trayectoria"
+    ]
+  },
+  {
     "text": "Bogotá",
     "locations": [
       "Inicio · trayectoria"
@@ -396,6 +408,12 @@
   },
   {
     "text": "Infraestructura",
+    "locations": [
+      "Inicio · trayectoria"
+    ]
+  },
+  {
+    "text": "Las fechas corresponden al periodo de participación de Compacto Urbano en cada proyecto.",
     "locations": [
       "Inicio · trayectoria"
     ]
@@ -552,6 +570,78 @@
     ]
   },
   {
+    "text": "ahora",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Analizamos tu proyecto antes de proponer.",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Años de experiencia",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Aqué creemos que el mejor espacio para cotizar es",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Asesores disponibles",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Asesoría personalizada",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Atención directa",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Cada proyecto es ónico. Preferimos conocerte primero y ofrecerte una propuesta personalizada.",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Comunidades administradas",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
     "text": "Cotizar proyecto",
     "locations": [
       "Inmobiliaria · Encabezado y pie",
@@ -568,7 +658,40 @@
     ]
   },
   {
+    "text": "Estamos listos para preparar una propuesta a la medida.",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
     "text": "Experiencias digitales para arquitectura,",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Gestión Inmobiliaria",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Inmobiliaria · svc-hero",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Hablar con un asesor",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "hablar con un asesor.",
     "locations": [
       "Inmobiliaria · Encabezado y pie",
       "Interventoría · Encabezado y pie",
@@ -592,7 +715,56 @@
     ]
   },
   {
+    "text": "Propiedad Horizontal",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie",
+      "Propiedad horizontal · svc-hero"
+    ]
+  },
+  {
+    "text": "Proyectos gestionados",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Respuesta rápida",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Sin intermediarios ni procesos complicados.",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
     "text": "Soluciones integrales en gestión inmobiliaria,\n                        propiedad horizontal e interventoría.",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Te respondemos en el menor tiempo posible.",
+    "locations": [
+      "Inmobiliaria · Encabezado y pie",
+      "Interventoría · Encabezado y pie",
+      "Propiedad horizontal · Encabezado y pie"
+    ]
+  },
+  {
+    "text": "Tiempo promedio: 2 min",
     "locations": [
       "Inmobiliaria · Encabezado y pie",
       "Interventoría · Encabezado y pie",
@@ -815,12 +987,6 @@
   },
   {
     "text": "Gestión de ocupación y contratos",
-    "locations": [
-      "Inmobiliaria · svc-hero"
-    ]
-  },
-  {
-    "text": "Gestión Inmobiliaria",
     "locations": [
       "Inmobiliaria · svc-hero"
     ]
@@ -1454,12 +1620,6 @@
   },
   {
     "text": "Propiedad horizontal",
-    "locations": [
-      "Propiedad horizontal · svc-hero"
-    ]
-  },
-  {
-    "text": "Propiedad Horizontal",
     "locations": [
       "Propiedad horizontal · svc-hero"
     ]

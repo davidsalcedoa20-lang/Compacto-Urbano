@@ -1,6 +1,6 @@
 # Edición de textos y tipografía
 
-En `/admin`, la sección **Textos y tipografía** permite buscar y modificar 233 textos visibles de la página de inicio y las tres páginas individuales de servicios. Si una misma frase aparece varias veces, un cambio actualiza todas sus apariciones. El panel muestra sus ubicaciones. Un campo vacío conserva el texto original; **Restaurar texto** retira una sustitución.
+En `/admin`, la sección **Textos y tipografía** permite buscar y modificar 252 textos visibles de la página de inicio y las tres páginas individuales de servicios. Si una misma frase aparece varias veces, un cambio actualiza todas sus apariciones. El panel muestra sus ubicaciones. Un campo vacío conserva el texto original; **Restaurar texto** retira una sustitución.
 
 El carrusel principal, la línea de tiempo, los tres servicios principales y los datos de contacto mantienen sus editores específicos. Sus cambios se aplican antes de las sustituciones generales de texto. Para cambiar una dirección, correo o teléfono y su enlace, usa **Contacto**.
 
